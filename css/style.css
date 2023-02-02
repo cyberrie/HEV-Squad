@@ -1,6 +1,35 @@
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  background-color: var(--primary-color2);
+}
+
+h1 {
+  font-size: 5rem;
+  margin-bottom: 64px;
+  font-family: Unbounded !important;
+}
+
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 132px;
+}
+
+.hide {
+  display: none;
+  overflow: hidden;
+}
+
+.questionTitle {
+  font-size: 4rem;
+  margin: 0 auto;
+  text-align: center;
+}
