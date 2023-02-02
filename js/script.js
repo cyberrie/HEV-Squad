@@ -8,3 +8,6 @@ let questions = [
     choices: ["Vegan", "Vegetarian", "Meat", "Seafood", "Surpise Me!"],
   },
 ];
+//Global variables
+
+let landingPageIcons = document.getElementById("landingPageIcons");
