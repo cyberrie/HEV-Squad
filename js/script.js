@@ -96,19 +96,16 @@ drinkBtns.forEach(function (drinkBtn) {
   });
 });
 
-
-
 // addEventListener to foodBtn
 
-let drinkResults = document.getElementById('drinkResults');
+let drinkResults = document.getElementById("drinkResults");
 
 function chosenSelectedDrink() {
-  if(userDrinkChoice == 'Surprise Me')
-  {
+  if (userDrinkChoice == "Surprise Me") {
     for (let i = 0; i < 1; i++) {
-        let randomIndex = Math.floor(Math.random() * (drinkBtns.length - 1));
-        let randomValue = drinkBtns[randomIndex];
-        userDrinkChoice = randomValue.textContent
+      let randomIndex = Math.floor(Math.random() * (drinkBtns.length - 1));
+      let randomValue = drinkBtns[randomIndex];
+      userDrinkChoice = randomValue.textContent;
     }
   }
 
@@ -128,28 +125,29 @@ function chosenSelectedDrink() {
     `)
         .then((response) => response.json())
         .then((response) => {
-          let drinkDetails = response.drinks
-          console.log(drinkDetails[0].strDrinkThumb)//this displays the drink image.
-          console.log(drinkDetails[0].strInstructions)//this displays the drink instructions.
-        //This loops through the ingredients and displays the value if truthy.
-          let string = [];//Create an empty array to store the truthy ingredients.
+          let drinkDetails = response.drinks;
+          console.log(drinkDetails[0].strDrinkThumb); //this displays the drink image.
+          console.log(drinkDetails[0].strInstructions); //this displays the drink instructions.
+          //This loops through the ingredients and displays the value if truthy.
+          let string = []; //Create an empty array to store the truthy ingredients.
 
           for (let i = 1; i <= 15; i++) {
             let ingredient = drinkDetails[0][`strIngredient${i}`];
-            
+
             if (ingredient) {
-              console.log(ingredient);//this renders each ingredient if it exists.
-              string.push(ingredient);//this cycles through each truthy ingredient and pushes it into the new array.
+              console.log(ingredient); //this renders each ingredient if it exists.
+              string.push(ingredient); //this cycles through each truthy ingredient and pushes it into the new array.
             }
           }
           console.log(string);
 
-          let displayDrink = document.createElement('div');// this is a test div to append the drink details to the page.
-          displayDrink.innerHTML=
-          `<h1>${randomDrink.strDrink}</h1>
+          let displayDrink = document.createElement("div"); // this is a test div to append the drink details to the page.
+          displayDrink.innerHTML = `<h1>${randomDrink.strDrink}</h1>
           <img src="${drinkDetails[0].strDrinkThumb}" alt="Image of a drink">
           <p>Instructions: ${drinkDetails[0].strInstructions}</p>
-          <p>Ingredients: ${string.map(ingredient => `<li>${ingredient}</li>`).join('')}</p>
+          <p>Ingredients: ${string
+            .map((ingredient) => `<li>${ingredient}</li>`)
+            .join("")}</p>
           `;
           drinkResults.append(displayDrink);
         });
@@ -163,16 +161,11 @@ function chosenSelectedDrink() {
 
 //ingredients has 15 choices, i should loop through each and display the ingredient if it has a value.
 
-
 //Issues
 
-    //How do we or are we going to segment the drinks based upon the mood? e.g if they're happy what do we recommend?
-    //No option for water in the API, so we could hard-core this instead?
-    //ICEBOX - randomise the drink and meal selection?
-
-
-
-
+//How do we or are we going to segment the drinks based upon the mood? e.g if they're happy what do we recommend?
+//No option for water in the API, so we could hard-core this instead?
+//ICEBOX - randomise the drink and meal selection?
 
 function randomMeats(meatOptions) {}
 
@@ -212,7 +205,45 @@ function fetchMealData(category) {
         );
       })
       .then((response) => response.json())
-      .then((selectedMeal) => console.log(selectedMeal));
+      .then((selectedMeal) => {
+        // Render data
+        let mealDetails = selectedMeal.meals;
+
+        let stringIngr = []; //Create an empty array to store the truthy ingredients.
+        let stringMeasure = [];
+
+        for (let i = 1; i <= 20; i++) {
+          let ingredient = mealDetails[0][`strIngredient${i}`];
+          let quantity = mealDetails[0][`strMeasure${i}`];
+
+          if (ingredient && quantity) {
+            console.log("ingredient:", ingredient, "quantity:", quantity); //this renders each ingredient if it exists.
+            stringIngr.push(ingredient); //this cycles through each truthy ingredient and pushes it into the new array.
+            stringMeasure.push(quantity);
+          }
+        }
+        console.log("string:", stringIngr, "quantity:", stringMeasure);
+
+        let mealCard = document.querySelector("#meal-card");
+        let mealName = mealDetails[0].strMeal;
+        console.log(mealName);
+        let mealIngr = stringIngr;
+        let mappedIngr = mealIngr
+          .map((ingredient) => `<li>${ingredient}</li>`)
+          .join("");
+
+        console.log(mealIngr);
+        let ingrQuant = stringMeasure;
+        let mappedQuan = ingrQuant
+          .map((ingredient) => `<li>${ingredient}</li>`)
+          .join("");
+        // let mealImage = data.strMealTumb;
+
+        let htmlMealData = `<h2>${mealName}</h2>
+        <li>Ingredients: ${mappedIngr}, Quantity: ${mappedQuan}</li>`;
+
+        mealCard.innerHTML = htmlMealData;
+      });
 
     // Mix them all up and randomise for surprise me
   } else if (category === "Surprise Me") {
@@ -227,8 +258,48 @@ function fetchMealData(category) {
         let index = Math.floor(Math.random() * mealData.meals.length);
         let randomSurpriseMeal = mealData.meals[index];
         console.log(randomSurpriseMeal);
+
         // Render meal
         // renderMeal(randomSurpriseMeal);
+
+        let mealDetails = mealData.meals;
+        console.log(mealDetails);
+
+        let stringIngr = []; //Create an empty array to store the truthy ingredients.
+        let stringMeasure = [];
+
+        for (let i = 1; i <= 20; i++) {
+          let ingredient = mealDetails[0][`strIngredient${i}`];
+          let quantity = mealDetails[0][`strMeasure${i}`];
+
+          if (ingredient && quantity) {
+            console.log("ingredient:", ingredient, "quantity:", quantity); //this renders each ingredient if it exists.
+            stringIngr.push(ingredient); //this cycles through each truthy ingredient and pushes it into the new array.
+            stringMeasure.push(quantity);
+          }
+        }
+        console.log("string:", stringIngr, "quantity:", stringMeasure);
+
+        // Render data
+        let mealCard = document.querySelector("#meal-card");
+        let mealName = mealDetails[0].strMeal;
+        console.log(mealName);
+        let mealIngr = stringIngr;
+        let mappedIngr = mealIngr
+          .map((ingredient) => `<li>${ingredient}</li>`)
+          .join("");
+
+        console.log(mealIngr);
+        let ingrQuant = stringMeasure;
+        let mappedQuan = ingrQuant
+          .map((ingredient) => `<li>${ingredient}</li>`)
+          .join("");
+        // let mealImage = data.strMealTumb;
+
+        let htmlMealData = `<h2>${mealName}</h2>
+          <li>Ingredients: ${mappedIngr}, Quantity: ${mappedQuan}</li>`;
+
+        mealCard.innerHTML = htmlMealData;
       });
   } else {
     fetch(`https://themealdb.com/api/json/v1/1/filter.php?c=${category}`)
@@ -246,7 +317,45 @@ function fetchMealData(category) {
         );
       })
       .then((response) => response.json())
-      .then((selectedMeal) => console.log(selectedMeal));
+      .then((selectedMeal) => {
+        let mealDetails = selectedMeal.meals;
+
+        let stringIngr = []; //Create an empty array to store the truthy ingredients.
+        let stringMeasure = [];
+
+        for (let i = 1; i <= 20; i++) {
+          let ingredient = mealDetails[0][`strIngredient${i}`];
+          let quantity = mealDetails[0][`strMeasure${i}`];
+
+          if (ingredient && quantity) {
+            console.log("ingredient:", ingredient, "quantity:", quantity); //this renders each ingredient if it exists.
+            stringIngr.push(ingredient); //this cycles through each truthy ingredient and pushes it into the new array.
+            stringMeasure.push(quantity);
+          }
+        }
+        console.log("string:", stringIngr, "quantity:", stringMeasure);
+
+        // Render data
+        let mealCard = document.querySelector("#meal-card");
+        let mealName = mealDetails[0].strMeal;
+        console.log(mealName);
+        let mealIngr = stringIngr;
+        let mappedIngr = mealIngr
+          .map((ingredient) => `<li>${ingredient}</li>`)
+          .join("");
+
+        console.log(mealIngr);
+        let ingrQuant = stringMeasure;
+        let mappedQuan = ingrQuant
+          .map((ingredient) => `<li>${ingredient}</li>`)
+          .join("");
+        // let mealImage = data.strMealTumb;
+
+        let htmlMealData = `<h2>${mealName}</h2>
+        <li>Ingredients: ${mappedIngr}, Quantity: ${mappedQuan}</li>`;
+
+        mealCard.innerHTML = htmlMealData;
+      });
   }
 }
 
@@ -260,14 +369,4 @@ meat.addEventListener("click", () => fetchMealData("Meat"));
 // Render meal data based on the user input
 
 // // Function to render meal
-// function renderMeal(data) {
-//   let mealCard = document.querySelector("#meal-card");
-//   let mealName = data.strMeal;
-//   // let mealImage = data.strMealTumb;
-
-//   let htmlMealData = `<h2>${mealName}</h2>
-//     <img src='${mealImage}'>`;
-
-//   mealCard.innerHTML = htmlMealData;
-// }
-
+function renderMeal(mealDetails, stringIngr) {}
