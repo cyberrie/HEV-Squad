@@ -93,7 +93,7 @@ drinkBtns.forEach(function (drinkBtn) {
 
 // API check mealsDB
 
-// user input - meal categories: vegan, vegeterian, meat[beef, chicken, lamb, pork, goat], seafood, surprise me: mix them all up?
+// user input - API meal categories: vegan, vegeterian, meat[beef, chicken, lamb, pork, goat], seafood, surprise me: mix them all up? only mixed vegan, vegeterian and seafood as meats are a pain
 
 // Function to fetch meal data based on user input
 function fetchMealData(category) {
@@ -128,13 +128,15 @@ function fetchMealData(category) {
                         let index = Math.floor(
                           Math.random() * meatOptions.length
                         );
-                        let randomMeal =
+                        let randomMeatMeal =
                           meatOptions[index].meals[
                             Math.floor(
                               Math.random() * meatOptions[index].meals.length
                             )
                           ];
-                        console.log(randomMeal);
+                        console.log(randomMeatMeal);
+                        // Render Meal
+                        renderMeal(randomMeatMeal);
                       });
                   });
               });
@@ -152,16 +154,20 @@ function fetchMealData(category) {
       // This is the returned selected meal data (array of objects), function to randomly select one meal
       .then((mealData) => {
         let index = Math.floor(Math.random() * mealData.meals.length);
-        let generatedMeal = mealData.meals[index];
-        console.log(generatedMeal);
+        let randomSurpriseMeal = mealData.meals[index];
+        console.log(randomSurpriseMeal);
+        // Render meal
+        renderMeal(randomSurpriseMeal);
       });
   } else {
     fetch(`https://themealdb.com/api/json/v1/1/filter.php?c=${category}`)
       .then((response) => response.json())
       .then((mealData) => {
         let index = Math.floor(Math.random() * mealData.meals.length);
-        let generatedMeal = mealData.meals[index];
-        console.log(generatedMeal);
+        let generatedRandomMeal = mealData.meals[index];
+        console.log(generatedRandomMeal);
+        // Render meal
+        renderMeal(generatedRandomMeal);
       });
   }
 }
@@ -175,7 +181,14 @@ meat.addEventListener("click", () => fetchMealData("Meat"));
 
 // Render meal data based on the user input
 
-// function renderMeal(mealData) {
+// Function to render meal
+function renderMeal(data) {
+  let mealCard = document.querySelector("#meal-card");
+  let mealName = data.strMeal;
+  let mealImage = data.strMealTumb;
 
-//   let selectedMeal =
-// }
+  let htmlMealData = `<h2>${mealName}</h2>
+    <img src='${mealImage}'>`;
+
+  mealCard.innerHTML = htmlMealData;
+}
