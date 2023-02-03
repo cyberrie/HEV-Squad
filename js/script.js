@@ -126,26 +126,30 @@ function chosenSelectedDrink() {
         .then((response) => response.json())
         .then((response) => {
           let drinkDetails = response.drinks;
+          console.log(drinkDetails);
           console.log(drinkDetails[0].strDrinkThumb); //this displays the drink image.
           console.log(drinkDetails[0].strInstructions); //this displays the drink instructions.
           //This loops through the ingredients and displays the value if truthy.
-          let string = []; //Create an empty array to store the truthy ingredients.
-
+          let drinkIngredientArray = []; //Create an empty array to store the truthy ingredients.
+          let drinkMeasureArray = []
           for (let i = 1; i <= 15; i++) {
             let ingredient = drinkDetails[0][`strIngredient${i}`];
+            let measure = drinkDetails[0][`strMeasure${i}`];
 
-            if (ingredient) {
+            if (ingredient && measure) {
               console.log(ingredient); //this renders each ingredient if it exists.
-              string.push(ingredient); //this cycles through each truthy ingredient and pushes it into the new array.
+            
+              drinkIngredientArray.push(ingredient); //this cycles through each truthy ingredient and pushes it into the new array.
+              drinkMeasureArray.push(measure);
             }
           }
-          console.log(string);
+          console.log(drinkIngredientArray);
 
           let displayDrink = document.createElement("div"); // this is a test div to append the drink details to the page.
           displayDrink.innerHTML = `<h1>${randomDrink.strDrink}</h1>
           <img src="${drinkDetails[0].strDrinkThumb}" alt="Image of a drink">
           <p>Instructions: ${drinkDetails[0].strInstructions}</p>
-          <p>Ingredients: ${string
+          <p>Ingredients: ${drinkIngredientArray
             .map((ingredient) => `<li>${ingredient}</li>`)
             .join("")}</p>
           `;
