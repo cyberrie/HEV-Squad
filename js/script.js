@@ -232,21 +232,15 @@ function fetchMealData(category) {
         let mealImg = mealDetails[0].strMealThumb;
         let mealIngr = stringIngr;
         let mealInstr = mealDetails[0].strInstructions;
-        let mappedIngr = mealIngr
-          .map((ingredient) => `<li>${ingredient}</li>`)
-          .join("");
-
-        console.log(mealIngr);
         let ingrQuant = stringMeasure;
-        let mappedQuan = ingrQuant
-          .map((ingredient) => `<li>${ingredient}</li>`)
+        let ingredients = mealIngr
+          .map((ingredient, index) => `${ingredient}, ${ingrQuant[index]}; `)
           .join("");
-        // let mealImage = data.strMealTumb;
 
         let htmlMealData = `<h2>${mealName}</h2>
         <img src='${mealImg}'>
-        <li>Ingredients: ${mappedIngr}, Quantity: ${mappedQuan}</li>
-        <p>${mealInstr}</p>`;
+        <li>Ingredients: ${ingredients}</li>
+        <p>Instructions: ${mealInstr}</p>`;
 
         mealCard.innerHTML = htmlMealData;
       });
@@ -298,20 +292,15 @@ function fetchMealData(category) {
         let mealImg = mealDetails[0].strMealThumb;
         let mealInstr = mealDetails[0].strInstructions;
         let mealIngr = stringIngr;
-        let mappedIngr = mealIngr
-          .map((ingredient) => `<li>${ingredient}</li>`)
-          .join("");
-
-        console.log(mealIngr);
         let ingrQuant = stringMeasure;
-        let mappedQuan = ingrQuant
-          .map((ingredient) => `<li>${ingredient}</li>`)
+        let ingredients = mealIngr
+          .map((ingredient, index) => `${ingredient}, ${ingrQuant[index]}; `)
           .join("");
 
         let htmlMealData = `<h2>${mealName}</h2>
         <img src='${mealImg}'>
-          <li>Ingredients: ${mappedIngr}, Quantity: ${mappedQuan}</li>
-          <p>${mealInstr}</p>`;
+        <li>Ingredients: ${ingredients}</li>
+        <p>Instructions: ${mealInstr}</p>`;
 
         mealCard.innerHTML = htmlMealData;
       });
@@ -351,21 +340,18 @@ function fetchMealData(category) {
         let mealCard = document.querySelector("#meal-card");
         let mealName = mealDetails[0].strMeal;
         console.log(mealName);
-        let mealIngr = stringIngr;
         let mealImg = mealDetails[0].strMealThumb;
         let mealInstr = mealDetails[0].strInstructions;
-        let mappedIngr = mealIngr
-          .map((ingredient) => `<li>${ingredient}</li>`)
+        let mealIngr = stringIngr;
+        let ingrQuant = stringMeasure;
+        let ingredients = mealIngr
+          .map((ingredient, index) => `${ingredient}, ${ingrQuant[index]}; `)
           .join("");
 
-        let ingrQuant = stringMeasure;
-        let mappedQuan = ingrQuant
-          .map((ingredient) => `<li>${ingredient}</li>`)
-          .join("");
         let htmlMealData = `<h2>${mealName}</h2>
         <img src='${mealImg}'>
-        <li>Ingredients: ${mappedIngr}, Quantity: ${mappedQuan}</li>
-        <p>${mealInstr}</p>`;
+        <li>Ingredients: ${ingredients}</li>
+        <p>Instructions: ${mealInstr}</p>`;
 
         mealCard.innerHTML = htmlMealData;
       });
