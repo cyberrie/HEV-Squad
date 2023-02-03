@@ -100,6 +100,19 @@ drinkBtns.forEach(function (drinkBtn) {
 // addEventListener to foodBtn
 
 function chosenSelectedDrink() {
+    console.log(userDrinkChoice);
+
+  if(userDrinkChoice == 'Surprise Me')
+  {
+    for (let i = 0; i < 1; i++) {
+        let randomIndex = Math.floor(Math.random() * (drinkBtns.length - 1));
+        let randomValue = drinkBtns[randomIndex];
+        console.log(randomValue);
+        userDrinkChoice = randomValue.textContent
+    }
+  
+  }
+
   let queryURL = `https://thecocktaildb.com/api/json/v1/1/filter.php?c=${userDrinkChoice}`;
   fetch(queryURL)
     .then((response) => response.json())
@@ -143,4 +156,6 @@ function chosenSelectedDrink() {
 
 //Issues
 
-    //How do I segment the drinks based upon the mood? e.g if they're happy what do we recommend? 
+    //How do we or are we going to segment the drinks based upon the mood? e.g if they're happy what do we recommend?
+    //No option for water in the API, so we could hard-core this instead?
+    //ICEBOX - randomise the drink and meal selection?
