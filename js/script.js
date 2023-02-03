@@ -26,7 +26,7 @@ let vegan = document.querySelector("#vegan");
 let vegeterian = document.querySelector("#vegeterian");
 let meat = document.querySelector("#meat");
 let seafood = document.querySelector("#seafood");
-let surprise = document.querySelector("#surpise");
+let surprise = document.querySelector("#surprise");
 
 // Questions based of which cocktails/ food will be rendered
 let questions = [
@@ -34,8 +34,7 @@ let questions = [
     title: "Are you thirsty?",
   },
   {
-    title: "What do you fancy?",
-    choices: ["Vegan", "Vegetarian", "Meat", "Seafood", "Surpise Me!"],
+    title: "Wanna bite?",
   },
 ];
 
@@ -96,6 +95,8 @@ drinkBtns.forEach(function (drinkBtn) {
     }
   });
 });
+
+
 
 // addEventListener to foodBtn
 
@@ -168,3 +169,105 @@ function chosenSelectedDrink() {
     //How do we or are we going to segment the drinks based upon the mood? e.g if they're happy what do we recommend?
     //No option for water in the API, so we could hard-core this instead?
     //ICEBOX - randomise the drink and meal selection?
+
+
+
+
+
+function randomMeats(meatOptions) {}
+
+// API check mealsDB
+
+// user input - API meal categories: vegan, vegeterian, meat[beef, chicken, lamb, pork, goat], seafood, surprise me: mix them all up? only mixed vegan, vegeterian and seafood as meats are a pain
+
+// Function to fetch meal data based on user input
+function fetchMealData(category) {
+  // Hook Meat user input into all meat options on the API [beef, chicken, lamb, pork, goat]
+  if (category === "Meat") {
+    // meat options on categories API
+    let randomMeat = ["Beef", "Chicken", "Lamb", "Pork", "Goat"];
+    // empty variable to store meat
+    let chosenMeat;
+
+    function getRandomValue() {
+      let randomIndex = Math.floor(Math.random() * randomMeat.length);
+      chosenMeat = randomMeat[randomIndex];
+    }
+    getRandomValue();
+    //condition
+
+    let queryURL = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${chosenMeat}`;
+    fetch(queryURL)
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        let meals = response.meals;
+        let randomIndex = Math.floor(Math.random() * meals.length);
+        let randomMeals = meals[randomIndex];
+        console.log(randomMeals);
+
+        let mealId = randomMeals.idMeal;
+        return fetch(
+          `https://themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
+        );
+      })
+      .then((response) => response.json())
+      .then((selectedMeal) => console.log(selectedMeal));
+
+    // Mix them all up and randomise for surprise me
+  } else if (category === "Surprise Me") {
+    const categories = ["Vegan", "Vegetarian", "Seafood"];
+    const randomCategory =
+      categories[Math.floor(Math.random() * categories.length)];
+    console.log(randomCategory);
+    fetch(`https://themealdb.com/api/json/v1/1/filter.php?c=${randomCategory}`)
+      .then((response) => response.json())
+      // This is the returned selected meal data (array of objects), function to randomly select one meal
+      .then((mealData) => {
+        let index = Math.floor(Math.random() * mealData.meals.length);
+        let randomSurpriseMeal = mealData.meals[index];
+        console.log(randomSurpriseMeal);
+        // Render meal
+        // renderMeal(randomSurpriseMeal);
+      });
+  } else {
+    fetch(`https://themealdb.com/api/json/v1/1/filter.php?c=${category}`)
+      .then((response) => response.json())
+      .then((mealData) => {
+        let index = Math.floor(Math.random() * mealData.meals.length);
+        let generatedRandomMeal = mealData.meals[index];
+        console.log(generatedRandomMeal);
+        // Render meal
+        // renderMeal(generatedRandomMeal);
+
+        let mealId = generatedRandomMeal.idMeal;
+        return fetch(
+          `https://themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
+        );
+      })
+      .then((response) => response.json())
+      .then((selectedMeal) => console.log(selectedMeal));
+  }
+}
+
+// Hook user input into food buttons
+vegan.addEventListener("click", () => fetchMealData("Vegan"));
+vegeterian.addEventListener("click", () => fetchMealData("Vegetarian"));
+seafood.addEventListener("click", () => fetchMealData("Seafood"));
+surprise.addEventListener("click", () => fetchMealData("Surprise Me"));
+meat.addEventListener("click", () => fetchMealData("Meat"));
+
+// Render meal data based on the user input
+
+// // Function to render meal
+// function renderMeal(data) {
+//   let mealCard = document.querySelector("#meal-card");
+//   let mealName = data.strMeal;
+//   // let mealImage = data.strMealTumb;
+
+//   let htmlMealData = `<h2>${mealName}</h2>
+//     <img src='${mealImage}'>`;
+
+//   mealCard.innerHTML = htmlMealData;
+// }
+
