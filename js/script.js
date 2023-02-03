@@ -213,6 +213,7 @@ function fetchMealData(category) {
         // Render data
         let mealDetails = selectedMeal.meals;
 
+        // Ingredients and Quantity key-value iteration and 'pairing'
         let stringIngr = []; //Create an empty array to store the truthy ingredients.
         let stringMeasure = [];
 
@@ -226,25 +227,24 @@ function fetchMealData(category) {
             stringMeasure.push(quantity);
           }
         }
-        console.log("string:", stringIngr, "quantity:", stringMeasure);
+        console.log("ingredient:", stringIngr, "quantity:", stringMeasure);
 
+        // Render Data - create func for this
         let mealCard = document.querySelector("#meal-card");
         let mealName = mealDetails[0].strMeal;
         console.log(mealName);
+        let mealImg = mealDetails[0].strMealThumb;
         let mealIngr = stringIngr;
-        let mappedIngr = mealIngr
-          .map((ingredient) => `<li>${ingredient}</li>`)
-          .join("");
-
-        console.log(mealIngr);
+        let mealInstr = mealDetails[0].strInstructions;
         let ingrQuant = stringMeasure;
-        let mappedQuan = ingrQuant
-          .map((ingredient) => `<li>${ingredient}</li>`)
+        let ingredients = mealIngr
+          .map((ingredient, index) => `${ingredient}, ${ingrQuant[index]}; `)
           .join("");
-        // let mealImage = data.strMealTumb;
 
         let htmlMealData = `<h2>${mealName}</h2>
-        <li>Ingredients: ${mappedIngr}, Quantity: ${mappedQuan}</li>`;
+        <img src='${mealImg}'>
+        <li>Ingredients: ${ingredients}</li>
+        <p>Instructions: ${mealInstr}</p>`;
 
         mealCard.innerHTML = htmlMealData;
       });
@@ -258,17 +258,22 @@ function fetchMealData(category) {
     fetch(`https://themealdb.com/api/json/v1/1/filter.php?c=${randomCategory}`)
       .then((response) => response.json())
       // This is the returned selected meal data (array of objects), function to randomly select one meal
-      .then((mealData) => {
-        let index = Math.floor(Math.random() * mealData.meals.length);
-        let randomSurpriseMeal = mealData.meals[index];
+      .then((selectedData) => {
+        let index = Math.floor(Math.random() * selectedData.meals.length);
+        console.log(index);
+        let randomSurpriseMeal = selectedData.meals[index];
         console.log(randomSurpriseMeal);
 
-        // Render meal
-        // renderMeal(randomSurpriseMeal);
+        let mealId = randomSurpriseMeal.idMeal;
+        return fetch(
+          `https://themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
+        );
+      })
+      .then((response) => response.json())
+      .then((selectedMeal) => {
+        let mealDetails = selectedMeal.meals;
 
-        let mealDetails = mealData.meals;
-        console.log(mealDetails);
-
+        // Ingredients and Quantity key-value iteration and 'pairing'
         let stringIngr = []; //Create an empty array to store the truthy ingredients.
         let stringMeasure = [];
 
@@ -284,24 +289,22 @@ function fetchMealData(category) {
         }
         console.log("string:", stringIngr, "quantity:", stringMeasure);
 
-        // Render data
+        // Render Data - create func for this
         let mealCard = document.querySelector("#meal-card");
         let mealName = mealDetails[0].strMeal;
         console.log(mealName);
+        let mealImg = mealDetails[0].strMealThumb;
+        let mealInstr = mealDetails[0].strInstructions;
         let mealIngr = stringIngr;
-        let mappedIngr = mealIngr
-          .map((ingredient) => `<li>${ingredient}</li>`)
-          .join("");
-
-        console.log(mealIngr);
         let ingrQuant = stringMeasure;
-        let mappedQuan = ingrQuant
-          .map((ingredient) => `<li>${ingredient}</li>`)
+        let ingredients = mealIngr
+          .map((ingredient, index) => `${ingredient}, ${ingrQuant[index]}; `)
           .join("");
-        // let mealImage = data.strMealTumb;
 
         let htmlMealData = `<h2>${mealName}</h2>
-          <li>Ingredients: ${mappedIngr}, Quantity: ${mappedQuan}</li>`;
+        <img src='${mealImg}'>
+        <li>Ingredients: ${ingredients}</li>
+        <p>Instructions: ${mealInstr}</p>`;
 
         mealCard.innerHTML = htmlMealData;
       });
@@ -311,10 +314,8 @@ function fetchMealData(category) {
       .then((mealData) => {
         let index = Math.floor(Math.random() * mealData.meals.length);
         let generatedRandomMeal = mealData.meals[index];
-        console.log(generatedRandomMeal);
-        // Render meal
-        // renderMeal(generatedRandomMeal);
 
+        // Render Data - create func for this
         let mealId = generatedRandomMeal.idMeal;
         return fetch(
           `https://themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
@@ -337,26 +338,24 @@ function fetchMealData(category) {
             stringMeasure.push(quantity);
           }
         }
-        console.log("string:", stringIngr, "quantity:", stringMeasure);
+        console.log("ingredient:", stringIngr, "quantity:", stringMeasure);
 
-        // Render data
+        // Render data - create func for this
         let mealCard = document.querySelector("#meal-card");
         let mealName = mealDetails[0].strMeal;
         console.log(mealName);
+        let mealImg = mealDetails[0].strMealThumb;
+        let mealInstr = mealDetails[0].strInstructions;
         let mealIngr = stringIngr;
-        let mappedIngr = mealIngr
-          .map((ingredient) => `<li>${ingredient}</li>`)
-          .join("");
-
-        console.log(mealIngr);
         let ingrQuant = stringMeasure;
-        let mappedQuan = ingrQuant
-          .map((ingredient) => `<li>${ingredient}</li>`)
+        let ingredients = mealIngr
+          .map((ingredient, index) => `${ingredient}, ${ingrQuant[index]}; `)
           .join("");
-        // let mealImage = data.strMealTumb;
 
         let htmlMealData = `<h2>${mealName}</h2>
-        <li>Ingredients: ${mappedIngr}, Quantity: ${mappedQuan}</li>`;
+        <img src='${mealImg}'>
+        <li>Ingredients: ${ingredients}</li>
+        <p>Instructions: ${mealInstr}</p>`;
 
         mealCard.innerHTML = htmlMealData;
       });
