@@ -99,49 +99,58 @@ drinkBtns.forEach(function (drinkBtn) {
 
 // addEventListener to foodBtn
 
-function chosenSelectedDrink() {
-    console.log(userDrinkChoice);
+let drinkResults = document.getElementById('drinkResults');
 
+function chosenSelectedDrink() {
   if(userDrinkChoice == 'Surprise Me')
   {
     for (let i = 0; i < 1; i++) {
         let randomIndex = Math.floor(Math.random() * (drinkBtns.length - 1));
         let randomValue = drinkBtns[randomIndex];
-        console.log(randomValue);
         userDrinkChoice = randomValue.textContent
     }
-  
   }
 
   let queryURL = `https://thecocktaildb.com/api/json/v1/1/filter.php?c=${userDrinkChoice}`;
   fetch(queryURL)
     .then((response) => response.json())
     .then((response) => {
-      console.log(response);
       let drinks = response.drinks;
       // To get a random soft drink, pick a random index from the array
       let randomIndex = Math.floor(Math.random() * drinks.length);
       let randomDrink = drinks[randomIndex];
       // You can access the properties of the random soft drink, such as its name, ingredients, and instructions
-      console.log(randomDrink.strDrink);
+      console.log(randomDrink.strDrink); //drink name
       drinkId = randomDrink.idDrink;
 
       return fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}
     `)
         .then((response) => response.json())
         .then((response) => {
-          console.log(response);
           let drinkDetails = response.drinks
-          console.log(drinkDetails);//this gives all the details based on the current randomised drink.
           console.log(drinkDetails[0].strDrinkThumb)//this displays the drink image.
           console.log(drinkDetails[0].strInstructions)//this displays the drink instructions.
         //This loops through the ingredients and displays the value if truthy.
+          let string = [];//Create an empty array to store the truthy ingredients.
+
           for (let i = 1; i <= 15; i++) {
             let ingredient = drinkDetails[0][`strIngredient${i}`];
+            
             if (ingredient) {
               console.log(ingredient);//this renders each ingredient if it exists.
+              string.push(ingredient);//this cycles through each truthy ingredient and pushes it into the new array.
             }
           }
+          console.log(string);
+
+          let displayDrink = document.createElement('div');// this is a test div to append the drink details to the page.
+          displayDrink.innerHTML=
+          `<h1>${randomDrink.strDrink}</h1>
+          <img src="${drinkDetails[0].strDrinkThumb}" alt="Image of a drink">
+          <p>Instructions: ${drinkDetails[0].strInstructions}</p>
+          <p>Ingredients: ${string.map(ingredient => `<li>${ingredient}</li>`).join('')}</p>
+          `;
+          drinkResults.append(displayDrink);
         });
     });
 }
