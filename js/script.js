@@ -91,6 +91,8 @@ drinkBtns.forEach(function (drinkBtn) {
   });
 });
 
+function randomMeats(meatOptions) {}
+
 // API check mealsDB
 
 // user input - API meal categories: vegan, vegeterian, meat[beef, chicken, lamb, pork, goat], seafood, surprise me: mix them all up? only mixed vegan, vegeterian and seafood as meats are a pain
@@ -99,49 +101,35 @@ drinkBtns.forEach(function (drinkBtn) {
 function fetchMealData(category) {
   // Hook Meat user input into all meat options on the API [beef, chicken, lamb, pork, goat]
   if (category === "Meat") {
-    fetch(`https://themealdb.com/api/json/v1/1/filter.php?c=Beef`)
+    // meat options on categories API
+    let randomMeat = ["Beef", "Chicken", "Lamb", "Pork", "Goat"];
+    // empty variable to store meat
+    let chosenMeat;
+
+    function getRandomValue() {
+      let randomIndex = Math.floor(Math.random() * randomMeat.length);
+      chosenMeat = randomMeat[randomIndex];
+    }
+    getRandomValue();
+    //condition
+
+    let queryURL = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${chosenMeat}`;
+    fetch(queryURL)
       .then((response) => response.json())
-      .then((beefData) => {
-        fetch(`https://themealdb.com/api/json/v1/1/filter.php?c=Chicken`)
-          .then((response) => response.json())
-          .then((chickenData) => {
-            fetch(`https://themealdb.com/api/json/v1/1/filter.php?c=Lamb`)
-              .then((response) => response.json())
-              .then((lambData) => {
-                fetch(`https://themealdb.com/api/json/v1/1/filter.php?c=Pork`)
-                  .then((response) => response.json())
-                  .then((porkData) => {
-                    fetch(
-                      `https://themealdb.com/api/json/v1/1/filter.php?c=Goat`
-                    )
-                      .then((response) => response.json())
-                      .then((goatData) => {
-                        // create and array of all meat options
-                        let meatOptions = [
-                          beefData,
-                          chickenData,
-                          lambData,
-                          porkData,
-                          goatData,
-                        ];
-                        // randomly generate one meat meal only from the array of meat options
-                        let index = Math.floor(
-                          Math.random() * meatOptions.length
-                        );
-                        let randomMeatMeal =
-                          meatOptions[index].meals[
-                            Math.floor(
-                              Math.random() * meatOptions[index].meals.length
-                            )
-                          ];
-                        console.log(randomMeatMeal);
-                        // Render Meal
-                        renderMeal(randomMeatMeal);
-                      });
-                  });
-              });
-          });
-      });
+      .then((response) => {
+        console.log(response);
+        let meals = response.meals;
+        let randomIndex = Math.floor(Math.random() * meals.length);
+        let randomMeals = meals[randomIndex];
+        console.log(randomMeals);
+
+        let mealId = randomMeals.idMeal;
+        return fetch(
+          `https://themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
+        );
+      })
+      .then((response) => response.json())
+      .then((selectedMeal) => console.log(selectedMeal));
 
     // Mix them all up and randomise for surprise me
   } else if (category === "Surprise Me") {
@@ -157,7 +145,7 @@ function fetchMealData(category) {
         let randomSurpriseMeal = mealData.meals[index];
         console.log(randomSurpriseMeal);
         // Render meal
-        renderMeal(randomSurpriseMeal);
+        // renderMeal(randomSurpriseMeal);
       });
   } else {
     fetch(`https://themealdb.com/api/json/v1/1/filter.php?c=${category}`)
@@ -167,8 +155,15 @@ function fetchMealData(category) {
         let generatedRandomMeal = mealData.meals[index];
         console.log(generatedRandomMeal);
         // Render meal
-        renderMeal(generatedRandomMeal);
-      });
+        // renderMeal(generatedRandomMeal);
+
+        let mealId = generatedRandomMeal.idMeal;
+        return fetch(
+          `https://themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
+        );
+      })
+      .then((response) => response.json())
+      .then((selectedMeal) => console.log(selectedMeal));
   }
 }
 
@@ -181,14 +176,14 @@ meat.addEventListener("click", () => fetchMealData("Meat"));
 
 // Render meal data based on the user input
 
-// Function to render meal
-function renderMeal(data) {
-  let mealCard = document.querySelector("#meal-card");
-  let mealName = data.strMeal;
-  let mealImage = data.strMealTumb;
+// // Function to render meal
+// function renderMeal(data) {
+//   let mealCard = document.querySelector("#meal-card");
+//   let mealName = data.strMeal;
+//   // let mealImage = data.strMealTumb;
 
-  let htmlMealData = `<h2>${mealName}</h2>
-    <img src='${mealImage}'>`;
+//   let htmlMealData = `<h2>${mealName}</h2>
+//     <img src='${mealImage}'>`;
 
-  mealCard.innerHTML = htmlMealData;
-}
+//   mealCard.innerHTML = htmlMealData;
+// }
