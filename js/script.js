@@ -63,6 +63,9 @@ emojiBtns.forEach(function (emojiBtn) {
   });
 });
 
+let userDrinkChoice;
+let drinkId;
+
 drinkBtns.forEach(function (drinkBtn) {
   drinkBtn.addEventListener("click", function (event) {
     let selectedDrink = event.target;
@@ -87,9 +90,89 @@ drinkBtns.forEach(function (drinkBtn) {
       document.querySelector(".food-btns").classList.remove("hide");
       // add drinks options class
       document.querySelector(".food-btns").classList.add("options");
+      userDrinkChoice = selectedDrink.textContent;
+      chosenSelectedDrink();
     }
   });
 });
+
+
+
+// addEventListener to foodBtn
+
+let drinkResults = document.getElementById('drinkResults');
+
+function chosenSelectedDrink() {
+  if(userDrinkChoice == 'Surprise Me')
+  {
+    for (let i = 0; i < 1; i++) {
+        let randomIndex = Math.floor(Math.random() * (drinkBtns.length - 1));
+        let randomValue = drinkBtns[randomIndex];
+        userDrinkChoice = randomValue.textContent
+    }
+  }
+
+  let queryURL = `https://thecocktaildb.com/api/json/v1/1/filter.php?c=${userDrinkChoice}`;
+  fetch(queryURL)
+    .then((response) => response.json())
+    .then((response) => {
+      let drinks = response.drinks;
+      // To get a random soft drink, pick a random index from the array
+      let randomIndex = Math.floor(Math.random() * drinks.length);
+      let randomDrink = drinks[randomIndex];
+      // You can access the properties of the random soft drink, such as its name, ingredients, and instructions
+      console.log(randomDrink.strDrink); //drink name
+      drinkId = randomDrink.idDrink;
+
+      return fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}
+    `)
+        .then((response) => response.json())
+        .then((response) => {
+          let drinkDetails = response.drinks
+          console.log(drinkDetails[0].strDrinkThumb)//this displays the drink image.
+          console.log(drinkDetails[0].strInstructions)//this displays the drink instructions.
+        //This loops through the ingredients and displays the value if truthy.
+          let string = [];//Create an empty array to store the truthy ingredients.
+
+          for (let i = 1; i <= 15; i++) {
+            let ingredient = drinkDetails[0][`strIngredient${i}`];
+            
+            if (ingredient) {
+              console.log(ingredient);//this renders each ingredient if it exists.
+              string.push(ingredient);//this cycles through each truthy ingredient and pushes it into the new array.
+            }
+          }
+          console.log(string);
+
+          let displayDrink = document.createElement('div');// this is a test div to append the drink details to the page.
+          displayDrink.innerHTML=
+          `<h1>${randomDrink.strDrink}</h1>
+          <img src="${drinkDetails[0].strDrinkThumb}" alt="Image of a drink">
+          <p>Instructions: ${drinkDetails[0].strInstructions}</p>
+          <p>Ingredients: ${string.map(ingredient => `<li>${ingredient}</li>`).join('')}</p>
+          `;
+          drinkResults.append(displayDrink);
+        });
+    });
+}
+
+//www.thecocktaildb.com/api/json/v1/1/list.php?c=list - this list all the drink categories
+
+// 'Cocktail', 'Soft Drink', 'cofee/tea', 'Other / Unknown', 'Shake', 'Punch / Party Drink', 'Beer', 'Cocoa'.
+// based on the user selection we can then run a query to filter by that category, e.g user selects cocktails we will run c=cocktails and then provide them with a random drink from the fetch?
+
+//ingredients has 15 choices, i should loop through each and display the ingredient if it has a value.
+
+
+//Issues
+
+    //How do we or are we going to segment the drinks based upon the mood? e.g if they're happy what do we recommend?
+    //No option for water in the API, so we could hard-core this instead?
+    //ICEBOX - randomise the drink and meal selection?
+
+
+
+
 
 function randomMeats(meatOptions) {}
 
@@ -187,3 +270,4 @@ meat.addEventListener("click", () => fetchMealData("Meat"));
 
 //   mealCard.innerHTML = htmlMealData;
 // }
+
