@@ -116,6 +116,7 @@ function fetchMealData(category) {
                     )
                       .then((response) => response.json())
                       .then((goatData) => {
+                        // create and array of all meat options
                         let meatOptions = [
                           beefData,
                           chickenData,
@@ -123,11 +124,16 @@ function fetchMealData(category) {
                           porkData,
                           goatData,
                         ];
-                        // randomly generate one meat meal only
+                        // randomly generate one meat meal only from the array of meat options
                         let index = Math.floor(
                           Math.random() * meatOptions.length
                         );
-                        let randomMeal = meatOptions[index].meals[0];
+                        let randomMeal =
+                          meatOptions[index].meals[
+                            Math.floor(
+                              Math.random() * meatOptions[index].meals.length
+                            )
+                          ];
                         console.log(randomMeal);
                       });
                   });
