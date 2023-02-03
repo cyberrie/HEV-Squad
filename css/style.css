@@ -1,3 +1,5 @@
+/* universal selector reset */
+
 * {
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -16,6 +18,7 @@ h1 {
   font-family: Unbounded !important;
 }
 
+/* landing page container */
 .container {
   display: flex;
   justify-content: center;
@@ -25,11 +28,37 @@ h1 {
 
 .hide {
   display: none;
-  overflow: hidden;
 }
+
+/* questions */
 
 .questionTitle {
   font-size: 4rem;
   margin: 0 auto;
   text-align: center;
+}
+
+/* option buttons */
+
+.options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin-top: 64px;
+}
+
+button {
+  padding: 20px 40px;
+  font-size: 1.8rem;
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+
+button:hover {
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+button:active {
+  box-shadow: inset 1px 1px 10px #333;
 }
