@@ -13,10 +13,10 @@ let options = document.querySelector("#drink-options");
 // Drinks
 let drinkBtns = document.querySelectorAll(".drinks");
 let drinkBtn = document.querySelector(".drink-button");
-let mocktail = document.getElementById("mocktail");
+let shake = document.getElementById("shake");
 let cocktail = document.getElementById("cocktail");
 let softDrink = document.getElementById("soft-drink");
-let water = document.getElementById("water");
+let coffeeTea = document.getElementById("coffeeTea");
 let surpriseMe = document.getElementById("surprise-me");
 let drinkResults = document.getElementById("drink-card");
 let drinkCardName = document.getElementById("drinkCardName");
@@ -74,15 +74,19 @@ let drinkId;
 drinkBtns.forEach(function (drinkBtn) {
   drinkBtn.addEventListener("click", function (event) {
     let selectedDrink = event.target;
-
     // conditions, either button selected
-    if (
-      selectedDrink === mocktail ||
+    if (selectedDrink.tagName === "IMG") {
+      selectedDrink = selectedDrink.parentNode;
+    } 
+    else {
+      selectedDrink === shake ||
       selectedDrink === cocktail ||
       selectedDrink === softDrink ||
-      selectedDrink === water ||
+      selectedDrink === coffeeTea ||
       selectedDrink === surpriseMe
-    ) {
+    }
+    
+    {
       // appends 2nd question
       questionTitle.innerHTML = questions[1].title;
 
@@ -96,6 +100,7 @@ drinkBtns.forEach(function (drinkBtn) {
       // add drinks options class
       document.querySelector(".food-btns").classList.add("options");
       userDrinkChoice = selectedDrink.textContent;
+      console.log(userDrinkChoice);
       chosenSelectedDrink();
     }
   });

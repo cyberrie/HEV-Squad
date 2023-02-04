@@ -62,3 +62,18 @@ button:hover {
 button:active {
   box-shadow: inset 1px 1px 10px #333;
 }
+
+
+/*testing drink buttons with images*/
+
+.drink-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.drink-button img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+}
