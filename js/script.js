@@ -11,6 +11,8 @@ let questionTitle = document.querySelector(".questionTitle");
 let options = document.querySelector("#drink-options");
 
 // Drinks
+let userDrinkChoice;
+let drinkId;
 let drinkBtns = document.querySelectorAll(".drinks");
 let drinkBtn = document.querySelector(".drink-button");
 let shake = document.getElementById("shake");
@@ -68,25 +70,15 @@ emojiBtns.forEach(function (emojiBtn) {
   });
 });
 
-let userDrinkChoice;
-let drinkId;
-
 drinkBtns.forEach(function (drinkBtn) {
   drinkBtn.addEventListener("click", function (event) {
     let selectedDrink = event.target;
-    console.log(selectedDrink);
     // conditions, either button selected
     if (selectedDrink.tagName === "IMG") {
-      selectedDrink = selectedDrink.parentNode;
+      selectedDrink = selectedDrink.parentNode.textContent.trim();
     } else {
-      selectedDrink === shake ||
-        selectedDrink === cocktail ||
-        selectedDrink === softDrink ||
-        selectedDrink === coffeeTea ||
-        selectedDrink === surpriseMe;
+      selectedDrink = event.target.textContent.trim();
     }
-
-    {
       // appends 2nd question
       questionTitle.innerHTML = questions[1].title;
 
@@ -99,24 +91,29 @@ drinkBtns.forEach(function (drinkBtn) {
       document.querySelector(".food-btns").classList.remove("hide");
       // add drinks options class
       document.querySelector(".food-btns").classList.add("options");
-      userDrinkChoice = selectedDrink.textContent;
-      console.log(userDrinkChoice);
-      chosenSelectedDrink();
-    }
+      console.log(selectedDrink);
+
+      userDrinkChoice = selectedDrink;
+    
+      userDrinkChoice = selectedDrink;
+
+      chosenSelectedDrink(userDrinkChoice);
   });
 });
 
 // addEventListener to foodBtn
 
-function chosenSelectedDrink() {
-  if (userDrinkChoice == "Surprise Me") {
+function chosenSelectedDrink(userDrinkChoice) {
+  console.log(userDrinkChoice);
+
+  if (userDrinkChoice === "Surprise Me") {
     for (let i = 0; i < 1; i++) {
       let randomIndex = Math.floor(Math.random() * (drinkBtns.length - 1));
       let randomValue = drinkBtns[randomIndex];
-      userDrinkChoice = randomValue.textContent;
+      userDrinkChoice = randomValue.textContent.trim();
     }
   }
-
+  console.log(userDrinkChoice);
   let queryURL = `https://thecocktaildb.com/api/json/v1/1/filter.php?c=${userDrinkChoice}`;
   fetch(queryURL)
     .then((response) => response.json())
