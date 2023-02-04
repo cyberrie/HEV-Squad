@@ -35,7 +35,7 @@ h1 {
 
 /* questions */
 
-.questionTitle {
+.questionTitle, .mood-question {
   font-size: 10rem;
   margin: 0 auto;
   text-align: center;
