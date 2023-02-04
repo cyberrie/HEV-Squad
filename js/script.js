@@ -18,6 +18,11 @@ let cocktail = document.getElementById("cocktail");
 let softDrink = document.getElementById("soft-drink");
 let water = document.getElementById("water");
 let surpriseMe = document.getElementById("surprise-me");
+let drinkResults = document.getElementById("drink-card");
+let drinkCardName = document.getElementById("drinkCardName");
+let drinkCardImg = document.getElementById("drinkCardImg");
+let drinkCardInstructions = document.getElementById("drinkCardInstructions");
+let drinkCardUL = document.getElementById("drinkCardUL");
 
 // Foods
 let foodBtns = document.querySelectorAll(".foods");
@@ -98,8 +103,6 @@ drinkBtns.forEach(function (drinkBtn) {
 
 // addEventListener to foodBtn
 
-let drinkResults = document.getElementById("drinkResults");
-
 function chosenSelectedDrink() {
   if (userDrinkChoice == "Surprise Me") {
     for (let i = 0; i < 1; i++) {
@@ -118,7 +121,6 @@ function chosenSelectedDrink() {
       let randomIndex = Math.floor(Math.random() * drinks.length);
       let randomDrink = drinks[randomIndex];
       // You can access the properties of the random soft drink, such as its name, ingredients, and instructions
-      console.log(randomDrink.strDrink); //drink name
       drinkId = randomDrink.idDrink;
 
       return fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}
@@ -126,34 +128,29 @@ function chosenSelectedDrink() {
         .then((response) => response.json())
         .then((response) => {
           let drinkDetails = response.drinks;
-          console.log(drinkDetails);
-          console.log(drinkDetails[0].strDrinkThumb); //this displays the drink image.
-          console.log(drinkDetails[0].strInstructions); //this displays the drink instructions.
           //This loops through the ingredients and displays the value if truthy.
           let drinkIngredientArray = []; //Create an empty array to store the truthy ingredients.
-          let drinkMeasureArray = []
+          let drinkMeasureArray = [];
           for (let i = 1; i <= 15; i++) {
             let ingredient = drinkDetails[0][`strIngredient${i}`];
             let measure = drinkDetails[0][`strMeasure${i}`];
 
             if (ingredient && measure) {
-              console.log(ingredient); //this renders each ingredient if it exists.
-            
               drinkIngredientArray.push(ingredient); //this cycles through each truthy ingredient and pushes it into the new array.
               drinkMeasureArray.push(measure);
             }
           }
-          console.log(drinkIngredientArray);
-
-          let displayDrink = document.createElement("div"); // this is a test div to append the drink details to the page.
-          displayDrink.innerHTML = `<h1>${randomDrink.strDrink}</h1>
-          <img src="${drinkDetails[0].strDrinkThumb}" alt="Image of a drink">
-          <p>Instructions: ${drinkDetails[0].strInstructions}</p>
-          <p>Ingredients: ${drinkIngredientArray
-            .map((ingredient) => `<li>${ingredient}</li>`)
-            .join("")}</p>
-          `;
-          drinkResults.append(displayDrink);
+          drinkCardName.textContent = `${randomDrink.strDrink}`;
+          drinkCardImg.src = `${drinkDetails[0].strDrinkThumb}`;
+          drinkCardInstructions.textContent = `${drinkDetails[0].strInstructions}`;
+          let cardIngMeasure = drinkIngredientArray
+            .map(
+              (ingredient, index) =>
+                `<li>${ingredient}, ${drinkMeasureArray[index]}</li>`
+            )
+            .join("");
+          drinkCardUL.innerHTML = cardIngMeasure;
+          drinkResults.classList.remove("hide");
         });
     });
 }
