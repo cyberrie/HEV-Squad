@@ -74,18 +74,18 @@ let drinkId;
 drinkBtns.forEach(function (drinkBtn) {
   drinkBtn.addEventListener("click", function (event) {
     let selectedDrink = event.target;
+    console.log(selectedDrink);
     // conditions, either button selected
     if (selectedDrink.tagName === "IMG") {
       selectedDrink = selectedDrink.parentNode;
-    } 
-    else {
+    } else {
       selectedDrink === shake ||
-      selectedDrink === cocktail ||
-      selectedDrink === softDrink ||
-      selectedDrink === coffeeTea ||
-      selectedDrink === surpriseMe
+        selectedDrink === cocktail ||
+        selectedDrink === softDrink ||
+        selectedDrink === coffeeTea ||
+        selectedDrink === surpriseMe;
     }
-    
+
     {
       // appends 2nd question
       questionTitle.innerHTML = questions[1].title;
@@ -234,7 +234,6 @@ function fetchMealData(category) {
         // Render Data - create func for this
         let mealCard = document.querySelector("#meal-card");
         let mealName = mealDetails[0].strMeal;
-        console.log(mealName);
         let mealImg = mealDetails[0].strMealThumb;
         let mealIngr = stringIngr;
         let mealInstr = mealDetails[0].strInstructions;
@@ -243,7 +242,7 @@ function fetchMealData(category) {
           .map((ingredient, index) => `${ingredient}, ${ingrQuant[index]}; `)
           .join("");
 
-        let htmlMealData = `<h2>${mealName}</h2>
+        let htmlMealData = `<h1>${mealName}</h1>
         <img src='${mealImg}'>
         <li>Ingredients: ${ingredients}</li>
         <p>Instructions: ${mealInstr}</p>`;
@@ -303,10 +302,10 @@ function fetchMealData(category) {
           .map((ingredient, index) => `${ingredient}, ${ingrQuant[index]}; `)
           .join("");
 
-        let htmlMealData = `<h2>${mealName}</h2>
-        <img src='${mealImg}'>
-        <li>Ingredients: ${ingredients}</li>
-        <p>Instructions: ${mealInstr}</p>`;
+        let htmlMealData = `<h1>${mealName}</h1>
+          <img src='${mealImg}'>
+          <li>Ingredients: ${ingredients}</li>
+          <p>Instructions: ${mealInstr}</p>`;
 
         mealCard.innerHTML = htmlMealData;
       });
@@ -351,13 +350,12 @@ function fetchMealData(category) {
         let mealIngr = stringIngr;
         let ingrQuant = stringMeasure;
         let ingredients = mealIngr
-          .map((ingredient, index) => `${ingredient}, ${ingrQuant[index]}; `)
+          .map((ingredient, index) => `${ingredient} ${ingrQuant[index]}`)
           .join("");
-
-        let htmlMealData = `<h2>${mealName}</h2>
-        <img src='${mealImg}'>
-        <li>Ingredients: ${ingredients}</li>
-        <p>Instructions: ${mealInstr}</p>`;
+        let htmlMealData = `<h1>${mealName}</h1>
+          <img src='${mealImg}'
+          <li>Ingredients: ${ingredients}</li>
+          <p>${mealInstr}</p>`;
 
         mealCard.innerHTML = htmlMealData;
       });

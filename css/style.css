@@ -14,8 +14,9 @@ html {
 
 h1 {
   font-size: 5rem;
-  margin-bottom: 64px;
+  margin: 16px 0;
   font-family: Unbounded !important;
+  text-align: center !important;
 }
 
 /* landing page container */
@@ -63,7 +64,6 @@ button:active {
   box-shadow: inset 1px 1px 10px #333;
 }
 
-
 /*testing drink buttons with images*/
 
 .drink-button {
@@ -76,4 +76,31 @@ button:active {
   width: 100px;
   height: 100px;
   margin-bottom: 10px;
+}
+
+.results-container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100vw !important;
+  gap: 12px;
+}
+
+/* results cards */
+
+img {
+  padding: 15px;
+}
+
+li {
+  list-style-type: none;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 0 15px;
+}
+
+p {
+  font-size: 14px;
+  padding: 0 15px;
+  margin-top: 12px;
 }
