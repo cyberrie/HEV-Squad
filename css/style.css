@@ -13,10 +13,11 @@ html {
 }
 
 h1 {
-  font-size: 5rem;
+  font-size: 3.5rem;
   margin: 16px 0;
-  font-family: Unbounded !important;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   text-align: center !important;
+  font-weight: bold;
 }
 
 /* landing page container */
@@ -29,12 +30,13 @@ h1 {
 
 .hide {
   display: none;
+  overflow: hidden;
 }
 
 /* questions */
 
 .questionTitle {
-  font-size: 4rem;
+  font-size: 10rem;
   margin: 0 auto;
   text-align: center;
 }
@@ -51,9 +53,10 @@ h1 {
 
 button {
   padding: 20px 40px;
-  font-size: 1.8rem;
+  font-size: 3rem;
   border-radius: 10px;
   border: 1px solid gray;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 button:hover {
@@ -81,26 +84,38 @@ button:active {
 .results-container {
   display: flex !important;
   justify-content: center !important;
-  align-items: center !important;
   width: 100vw !important;
-  gap: 12px;
+  gap: 32px;
+  flex-wrap: wrap;
 }
 
 /* results cards */
 
+.card {
+  border-radius: 20px;
+  margin-bottom: 64px;
+  font-family: Georgia, sans-serif;
+
+}
+
 img {
-  padding: 15px;
+  padding: 35px;
+}
+
+ul {
+  padding: 0;
 }
 
 li {
   list-style-type: none;
-  font-weight: 500;
+  font-weight: bold;
   font-size: 15px;
-  padding: 0 15px;
+  padding: 0 35px;
 }
 
 p {
-  font-size: 14px;
-  padding: 0 15px;
+  font-size: 16px;
+  padding: 0 35px;
   margin-top: 12px;
+  margin-bottom: 28px !important;
 }

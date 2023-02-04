@@ -9,6 +9,8 @@ let emojiBtns = document.querySelectorAll(".img-fluid");
 let emojiBtn = document.querySelectorAll(".img-fluid");
 let questionTitle = document.querySelector(".questionTitle");
 let options = document.querySelector("#drink-options");
+let resultsContainer = document.getElementById("results-container");
+let container = document.querySelector('.container')
 
 // Drinks
 let drinkBtns = document.querySelectorAll(".drinks");
@@ -239,15 +241,24 @@ function fetchMealData(category) {
         let mealInstr = mealDetails[0].strInstructions;
         let ingrQuant = stringMeasure;
         let ingredients = mealIngr
-          .map((ingredient, index) => `${ingredient}, ${ingrQuant[index]}; `)
+          .map((ingredient, index) => `<li>${ingredient}, ${ingrQuant[index]}</li>`)
           .join("");
 
-        let htmlMealData = `<h1>${mealName}</h1>
-        <img src='${mealImg}'>
-        <li>Ingredients: ${ingredients}</li>
-        <p>Instructions: ${mealInstr}</p>`;
+        let htmlMealData = `<h1 class="card-title">${mealName}</h1>
+        <img class="card-img-top" alt="image of a meal" src='${mealImg}'>
+        <ul>${ingredients}</ul>
+        <p class="card-text">Instructions: ${mealInstr}</p>`;
 
         mealCard.innerHTML = htmlMealData;
+        resultsContainer.classList.remove("hide")
+        resultsContainer.classList.add("results-container")
+        // Remove the Questions
+        questionTitle.innerHTML = ''
+        // Remove Buttons
+        document.querySelector(".food-btns").innerHTML = ''
+        let containerTextHtml = `<div><button>Save</button></div>`
+       container.innerHTML = containerTextHtml
+        
       });
 
     // Mix them all up and randomise for surprise me
