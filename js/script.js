@@ -349,6 +349,7 @@ let message;
 landingPage.addEventListener("click", function (event) {
   let randomIndex = Math.floor(Math.random() * 2);
   let selectedQuote = event.target.id;
+  console.log(selectedQuote);
   if (selectedQuote === "selectAngry") {
     message = quotes.angry[randomIndex];
   } else if (selectedQuote === "selectHappy") {
@@ -361,10 +362,14 @@ landingPage.addEventListener("click", function (event) {
       arrayQuotes[Math.floor(Math.random() * quoteArrays.length)];
     let randomQuote =
       randomQuoteArray[Math.floor(Math.random() * randomArray.length)];
+    let randomQuoteArray = arrayQuotes[Math.floor(Math.random() * arrayQuotes.length)];
+    let randomQuote = randomQuoteArray[Math.floor(Math.random() * randomQuoteArray.length)]
     message = randomQuote;
   }
   return message;
 });
+
+
 
 /// review this with a TA perhaps
 
