@@ -304,7 +304,7 @@ function renderMeal(mealDetails) {
   questionTitle.innerHTML = "";
   // Remove Buttons
   document.querySelector(".food-btns").innerHTML = "";
-  let containerTextHtml = `<div><button class='save-button'><img class='save-icon'src="./assets/save.png" alt="save-icon">Save</button><h2>${message}</h2></div>`;
+  let containerTextHtml = `<div class="save-quote"> <div style="text-align:center"><button class='save-button'><img class='save-icon'src="./assets/save.png" alt="save-icon">Save</button></div> <h2>${message}</h2></div> `;
   container.innerHTML = containerTextHtml;
   setCardHeight();
 }
@@ -341,14 +341,14 @@ landingPage.addEventListener("click", function (event) {
     message = quotes.happy[randomIndex];
   } else if (selectedQuote === "selectSalsa") {
     let arrayQuotes = Object.values(quotes);
-    let randomQuoteArray = arrayQuotes[Math.floor(Math.random() * quoteArrays.length)];
-    let randomQuote = randomQuoteArray[Math.floor(Math.random() * randomArray.length)];
+    let randomQuoteArray =
+      arrayQuotes[Math.floor(Math.random() * quoteArrays.length)];
+    let randomQuote =
+      randomQuoteArray[Math.floor(Math.random() * randomArray.length)];
     message = randomQuote;
   }
   return message;
 });
-
-
 
 /// review this with a TA perhaps
 
