@@ -138,7 +138,6 @@ button:active {
   border-radius: 20px;
   margin-bottom: 64px;
   font-family: Georgia, sans-serif;
-  background-color: rgba(241, 227, 227, 0.666);
 }
 
 img {
@@ -149,6 +148,11 @@ img {
   object-fit: cover;
   height: 30vw;
   border-radius: 20%;
+}
+
+#drink-card,
+#meal-card {
+  background-color: rgba(241, 227, 227, 0.666);
 }
 
 .card {
