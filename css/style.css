@@ -15,7 +15,7 @@ html {
 h1 {
   font-size: 3.5rem;
   margin: 16px 0;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   text-align: center !important;
   font-weight: bold;
 }
@@ -23,9 +23,10 @@ h1 {
 /* landing page container */
 .container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin-top: 132px;
+  margin-top: 100px;
 }
 
 .hide {
@@ -35,7 +36,8 @@ h1 {
 
 /* questions */
 
-.questionTitle {
+.questionTitle,
+.mood-question {
   font-size: 10rem;
   margin: 0 auto;
   text-align: center;
@@ -46,17 +48,19 @@ h1 {
 .options {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
   gap: 32px;
   margin-top: 64px;
 }
 
 button {
-  padding: 20px 40px;
+  padding: 5px 20px;
   font-size: 3rem;
-  border-radius: 10px;
+  border-radius: 20%;
   border: 1px solid gray;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-color: transparent;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
 button:hover {
@@ -69,16 +73,25 @@ button:active {
 
 /*testing drink buttons with images*/
 
-.drink-button {
+.wrap-btns {
+  gap: 32px;
+  margin-top: 64px;
+}
+
+.drink-button,
+.food-button,
+.save-button {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
-.drink-button img {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 10px;
+.drink-button img,
+.meal-icon,
+.save-icon {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 5px;
 }
 
 .results-container {
@@ -95,11 +108,10 @@ button:active {
   border-radius: 20px;
   margin-bottom: 64px;
   font-family: Georgia, sans-serif;
-
 }
 
 img {
-  padding: 35px;
+  padding: 10px;
 }
 
 ul {

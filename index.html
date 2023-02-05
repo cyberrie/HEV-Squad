@@ -33,80 +33,88 @@
 
     <div class="container">
       <div class="container" id="landingPageIcons">
-        <div class="row emoji-wrap">
-          <h1 class="text-center">How are you feeling today?</h1>
-
-          <div class="col iconContainer">
-            <button type="button" class="btn">
-              <img
-                id="selectAngry"
-                src="/assets/angryIcon.jpg"
-                class="img-fluid"
-                alt="A angry emoji"
-              />
-            </button>
-          </div>
-          <div class="col">
-            <button type="button" class="btn">
-              <img
-                id="selectHappy"
-                src="/assets/happyIcon.jpg"
-                class="img-fluid"
-                alt="A happy emoji"
-              />
-            </button>
-          </div>
-          <div class="col">
-            <button type="button" class="btn">
-              <img
-                id="selectSad"
-                src="/assets/sadIcon.jpg"
-                class="img-fluid"
-                alt="A happy emoji"
-              />
-            </button>
-          </div>
-          <div class="col">
-            <button type="button" class="btn">
-              <img
-                id="selectSalsa"
-                src="/assets/salsa.jpg"
-                class="img-fluid"
-                alt="Salsa"
-              />
-            </button>
+        <div class="emoji-wrap">
+          <h1 class="text-center mood-question">How are you feeling today?</h1>
+          <div class="wrap-btns d-flex flex-wrap">
+            <div class="col iconContainer">
+              <button type="button" class="btn">
+                <img
+                  id="selectAngry"
+                  src="./assets/moods/angry2.png"
+                  class="img-fluid"
+                  alt="A angry emoji"
+                />
+              </button>
+            </div>
+            <div class="col">
+              <button type="button" class="btn">
+                <img
+                  id="selectHappy"
+                  src="./assets/moods/happy2.png"
+                  class="img-fluid"
+                  alt="A happy emoji"
+                />
+              </button>
+            </div>
+            <div class="col">
+              <button type="button" class="btn">
+                <img
+                  id="selectSad"
+                  src="./assets/moods/sad2.png"
+                  class="img-fluid"
+                  alt="A happy emoji"
+                />
+              </button>
+            </div>
+            <div class="col">
+              <button type="button" class="btn">
+                <img
+                  id="selectSalsa"
+                  src="./assets/moods/salsa2.png"
+                  class="img-fluid"
+                  alt="Salsa"
+                />
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
     <h1 class="questionTitle"></h1>
     <div class="drink-btns hide">
-      <button class="drinks drink-button" id="shake"><img src="assets/drinks/shake.png" alt="a picture of a milkshake" id="shakeIcon">Shake</button>
+      <button class="drinks drink-button" id="shake">
+        <img
+          src="assets/drinks/shake2.png"
+          alt="a picture of a milkshake"
+          id="shakeIcon"
+        />Shake
+      </button>
 
       <button class="drinks drink-button" id="cocktail">
         <img
-          src="assets/drinks/cocktail.png"
+          src="assets/drinks/cocktail2.png"
           alt="a picture of a cocktail"
           id="cocktailIcon"
         />Cocktail
       </button>
       <button class="drinks drink-button" id="soft-drink">
         <img
-          src="assets/drinks/softDrink.png"
+          src="assets/drinks/softdrink2.png"
           alt="a picture of a soft drink"
           id="softDrinkIcon"
         />Soft Drink
       </button>
       <button class="drinks drink-button" id="coffeeTea">
         <img
-        src="assets/drinks/coffeeTea.png"
-        alt="a picture of a hot drink"
-        id="coffeeTeaIcon"
-      />Coffee / Tea
+          src="assets/drinks/coffee2.png"
+          alt="a picture of a hot drink"
+          id="coffeeTeaIcon"
+        />Coffee / Tea
       </button>
       <button class="drinks drink-button" id="surprise-me">
         <img
-          src="assets/drinks/surprised.png"
+          src="assets/meals/surprise.png"
           alt="a picture of a drink"
           id="supriseDrinkIcon"
         />Surprise Me
@@ -114,11 +122,42 @@
     </div>
 
     <div class="food-btns hide">
-      <button class="foods food-button" id="vegan">Vegan</button>
-      <button class="foods food-button" id="vegeterian">Vegeterian</button>
-      <button class="foods food-button" id="meat">Meat</button>
-      <button class="foods food-button" id="seafood">Seafood</button>
-      <button class="foods food-button" id="surprise">Surprise Me</button>
+      <button class="foods food-button" id="vegan">
+        <img
+          class="meal-icon"
+          src="./assets/meals/vegan.png"
+          alt="vegan icon"
+        />
+        Vegan
+      </button>
+      <button class="foods food-button" id="vegeterian">
+        <img
+          class="meal-icon"
+          src="./assets/meals/vegetarian.png"
+          alt="vegetarian icon"
+        />Vegeterian
+      </button>
+      <button class="foods food-button" id="meat">
+        <img
+          class="meal-icon"
+          src="./assets/meals/meat.png"
+          alt="meat icon"
+        />Meat
+      </button>
+      <button class="foods food-button" id="seafood">
+        <img
+          class="meal-icon"
+          src="./assets/meals/seafood.png"
+          alt="seafood icon"
+        />Seafood
+      </button>
+      <button class="foods food-button" id="surprise">
+        <img
+          class="meal-icon"
+          src="./assets/meals/surprise.png"
+          alt="surprise-me icon"
+        />Surprise Me
+      </button>
     </div>
 
     <div class="hide" id="results-container">
@@ -133,15 +172,12 @@
           />
           <ul id="drinkCardUL" style="list-style-type: none"></ul>
           <p class="card-text" id="drinkCardInstructions"></p>
-         
         </div>
       </div>
 
       <div id="meal-card" class="card" style="width: 72rem"></div>
     </div>
 
-
-    
     <!-- Bootsrap jQuery -->
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
