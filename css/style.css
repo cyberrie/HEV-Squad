@@ -23,9 +23,10 @@ h1 {
 /* landing page container */
 .container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin-top: 132px;
+  margin-top: 100px;
 }
 
 .hide {
@@ -54,10 +55,11 @@ h1 {
 }
 
 button {
-  padding: 20px 40px;
+  padding: 5px 20px;
   font-size: 3rem;
-  border-radius: 10px;
+  border-radius: 20%;
   border: 1px solid gray;
+  background-color: transparent;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
@@ -72,8 +74,8 @@ button:active {
 /*testing drink buttons with images*/
 
 .wrap-btns {
-  display: flex;
-  flex-wrap: wrap;
+  gap: 32px;
+  margin-top: 64px;
 }
 
 .drink-button,
@@ -89,7 +91,7 @@ button:active {
 .save-icon {
   width: 200px;
   height: 200px;
-  margin-bottom: -25px;
+  margin-bottom: 5px;
 }
 
 .results-container {
@@ -109,7 +111,7 @@ button:active {
 }
 
 img {
-  padding: 35px;
+  padding: 10px;
 }
 
 ul {
