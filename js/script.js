@@ -295,7 +295,7 @@ function renderMeal(mealDetails) {
   let htmlMealData = `<h1 class="card-title">${mealName}</h1>
    <img class="card-img-top" alt="image of a meal" src='${mealImg}'>
    <ul>${ingredients}</ul>
-   <p class="card-text">Instructions: ${mealInstr}</p>`;
+   <p style='font-size: 12px;'class="card-text">Instructions: ${mealInstr}</p>`;
 
   mealCard.innerHTML = htmlMealData;
   resultsContainer.classList.remove("hide");
@@ -306,6 +306,7 @@ function renderMeal(mealDetails) {
   document.querySelector(".food-btns").innerHTML = "";
   let containerTextHtml = `<div><button class='save-button'><img class='save-icon'src="./assets/save.png" alt="save-icon">Save</button><h2>${message}</h2></div>`;
   container.innerHTML = containerTextHtml;
+  setCardHeight();
 }
 
 let quotes = {
@@ -346,3 +347,20 @@ landingPage.addEventListener("click", function (event) {
   }
   return message;
 });
+
+
+
+/// review this with a TA perhaps
+
+// // Results cards height to match the higher one
+
+// function setCardHeight() {
+//   const drinkCard = document.getElementById("drink-card");
+//   const mealCard = document.getElementById("meal-card");
+
+//   window.requestAnimationFrame(() => {
+//     const cardHeight = mealCard.offsetHeight + "px";
+
+//     drinkCard.style.height = cardHeight + "px";
+//   });
+// }

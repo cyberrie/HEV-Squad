@@ -9,7 +9,11 @@
 
 html {
   font-size: 62.5%;
-  background-color: var(--primary-color2);
+}
+
+body {
+  background: linear-gradient(90deg, #eeefeb, #ddeac1);
+  color: #494449 !important;
 }
 
 h1 {
@@ -50,8 +54,12 @@ h1 {
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
-  gap: 32px;
+  gap: 42px;
   margin-top: 64px;
+}
+
+.btn {
+  border-radius: 50%;
 }
 
 button {
@@ -71,6 +79,16 @@ button:active {
   box-shadow: inset 1px 1px 10px #333;
 }
 
+.img-fluid {
+  width: 190px;
+  height: 190px;
+}
+
+.save-icon {
+  width: 100px;
+  height: 100px;
+}
+
 /*testing drink buttons with images*/
 
 .wrap-btns {
@@ -87,10 +105,9 @@ button:active {
   text-align: center;
 }
 .drink-button img,
-.meal-icon,
-.save-icon {
-  width: 200px;
-  height: 200px;
+.meal-icon {
+  width: 150px;
+  height: 150px;
   margin-bottom: 5px;
 }
 
@@ -108,10 +125,21 @@ button:active {
   border-radius: 20px;
   margin-bottom: 64px;
   font-family: Georgia, sans-serif;
+  background-color: rgba(241, 227, 227, 0.666);
 }
 
 img {
-  padding: 10px;
+  padding: 20px;
+}
+
+.card-img-top {
+  object-fit: cover;
+  height: 30vw;
+  border-radius: 20%;
+}
+
+.card {
+  border: none;
 }
 
 ul {
@@ -121,13 +149,13 @@ ul {
 li {
   list-style-type: none;
   font-weight: bold;
-  font-size: 15px;
-  padding: 0 35px;
+  font-size: 14px;
+  padding: 0 20px;
 }
 
 p {
   font-size: 16px;
-  padding: 0 35px;
+  padding: 0 20px;
   margin-top: 12px;
   margin-bottom: 28px !important;
 }
