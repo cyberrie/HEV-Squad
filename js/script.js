@@ -304,27 +304,43 @@ function renderMeal(mealDetails) {
   questionTitle.innerHTML = "";
   // Remove Buttons
   document.querySelector(".food-btns").innerHTML = "";
-  let containerTextHtml = `<div class="save-quote"> <div style="text-align:center"><button class='save-button'><img class='save-icon'src="./assets/save.png" alt="save-icon">Save</button></div> <h2>${message}</h2></div> `;
+  let containerTextHtml = `<div class="save-quote"> <div style="text-align:center"><button class='save-button'><img class='save-icon'src="./assets/save.png" alt="save-icon">Save</button></div> <h2 class="message-quote">${message}</h2></div> `;
   container.innerHTML = containerTextHtml;
   setCardHeight();
 }
 
 let quotes = {
   angry: [
-    "For every minute you remain angry, you give up sixty seconds of peace of mind.",
-    "Anger is an acid that can do more harm to the vessel in which it is stored than to anything on which it is poured.",
+    "For every minute you remain angry, you give up sixty seconds of peace of mind. - R. W. Emerson",
+    "When tempted to fight fire with fire, remember the fire department usually uses water. - Unknown",
+    "The best fighter is never angry. - Lao Tzu",
+    "A heart filled with anger has no room for love. - Joan Lunden",
+    "Don’t waste your time in anger, regrets, worries, and grudges. Life is too short to be unhappy. ― Roy T. Bennett",
+    "Anger is an acid that can do more harm to the vessel in which it is stored than to anything on which it is poured. - Mark Twain",
   ],
   happy: [
-    "Whoever is happy will make others happy too.",
-    "Believe you can and you're halfway there.",
+    "Whoever is happy will make others happy too. - Anne Frank",
+    "Happiness depends upon ourselves. — Aristotle",
+    "Believe you can and you're halfway there. - Theodore Roosevelt",
+    "Remember this, that very little is needed to make a happy life. — Marcus Aurelius",
+    "There is no path to happiness; happiness is the path. - Buddha",
+    "No medicine cures what happiness cannot. - G. Garcia Marquez",
   ],
   sad: [
-    "Some days are just bad days, that's all. You have to experience sadness to know happiness, and I remind myself that not every day is going to be a good day, that's just the way it is!",
-    "Be happy for this moment. This moment is your life.",
+    "Some days are just bad days, that's all. You have to experience sadness to know happiness, and I remind myself that not every day is going to be a good day, that's just the way it is! - Dita Von Teese",
+    "Be happy for this moment. This moment is your life. - Omar Khayyan",
+    "Experiencing sadness and anger can make you feel more creative, and by being creative you can get beyond your pain or negativity. - Yoko Ono",
+    "Sad hurts but it's a healthy feeling. It is a necessary thing to feel. - J.K. Rowling",
+    "When you feel sad, it’s okay. It’s not the end of the world. - Mac Miller",
+    "It doesn’t hurt to feel sad from time to time. - Willie Nelson",
   ],
   surprised: [
-    "If you're changing the world, you're working on important things. You're excited to get up in the morning.",
-    "Think in the morning. Act in the noon. Eat in the evening. Sleep in the night.",
+    "If you're changing the world, you're working on important things. You're excited to get up in the morning. - Larry Page",
+    "Think in the morning. Act in the noon. Eat in the evening. Sleep in the night. - William Blake",
+    "We don't always know what we're doing. We often just get excited, put something down, and say, 'Oh, neat'. - Tina Weymouth",
+    "When I see old friends, I am very excited. - Chino Moreno",
+    "Think excitement, talk excitement, act out excitement, and you are bound to become an excited person. - Norman Vincent Peale",
+    "Stay excited and stay humble and good things will come. - Mark McMorris",
   ],
 };
 
@@ -338,7 +354,7 @@ landingPage.addEventListener("click", function (event) {
   } else if (selectedQuote === "selectHappy") {
     message = quotes.happy[randomIndex];
   } else if (selectedQuote === "selectSad") {
-    message = quotes.happy[randomIndex];
+    message = quotes.sad[randomIndex];
   } else if (selectedQuote === "selectSalsa") {
     let arrayQuotes = Object.values(quotes);
     let randomQuoteArray =

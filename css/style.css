@@ -41,6 +41,11 @@ h1 {
   gap: 36px;
 }
 
+.message-quote {
+  font-family: "Dancing Script";
+  font-size: 32px;
+}
+
 .hide {
   display: none;
   overflow: hidden;
