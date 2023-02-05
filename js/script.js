@@ -333,6 +333,7 @@ let message;
 landingPage.addEventListener("click", function (event) {
   let randomIndex = Math.floor(Math.random() * 2);
   let selectedQuote = event.target.id;
+  console.log(selectedQuote);
   if (selectedQuote === "selectAngry") {
     message = quotes.angry[randomIndex];
   } else if (selectedQuote === "selectHappy") {
@@ -341,8 +342,8 @@ landingPage.addEventListener("click", function (event) {
     message = quotes.happy[randomIndex];
   } else if (selectedQuote === "selectSalsa") {
     let arrayQuotes = Object.values(quotes);
-    let randomQuoteArray = arrayQuotes[Math.floor(Math.random() * quoteArrays.length)];
-    let randomQuote = randomQuoteArray[Math.floor(Math.random() * randomArray.length)];
+    let randomQuoteArray = arrayQuotes[Math.floor(Math.random() * arrayQuotes.length)];
+    let randomQuote = randomQuoteArray[Math.floor(Math.random() * randomQuoteArray.length)];
     message = randomQuote;
   }
   return message;
