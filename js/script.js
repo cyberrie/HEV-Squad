@@ -297,7 +297,7 @@ function renderMeal(mealDetails) {
   let htmlMealData = `<h1 class="card-title">${mealName}</h1>
    <img class="card-img-top" alt="image of a meal" src='${mealImg}'>
    <ul>${ingredients}</ul>
-   <p class="card-text">Instructions: ${mealInstr}</p>`;
+   <p style='font-size: 12px;'class="card-text">Instructions: ${mealInstr}</p>`;
 
   mealCard.innerHTML = htmlMealData;
   resultsContainer.classList.remove("hide");
