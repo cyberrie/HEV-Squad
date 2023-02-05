@@ -357,12 +357,7 @@ landingPage.addEventListener("click", function (event) {
   } else if (selectedQuote === "selectSad") {
     message = quotes.sad[randomIndex];
   } else if (selectedQuote === "selectSalsa") {
-    let arrayQuotes = Object.values(quotes);
-    let randomQuoteArray =
-      arrayQuotes[Math.floor(Math.random() * arrayQuotes.length)];
-    let randomQuote =
-      randomQuoteArray[Math.floor(Math.random() * randomArray.length)];
-    message = randomQuote;
+    message = quotes.surprised[randomIndex];
   }
   return message;
 });
