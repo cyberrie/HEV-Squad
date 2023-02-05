@@ -15,7 +15,7 @@ html {
 h1 {
   font-size: 3.5rem;
   margin: 16px 0;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   text-align: center !important;
   font-weight: bold;
 }
@@ -35,7 +35,8 @@ h1 {
 
 /* questions */
 
-.questionTitle, .mood-question {
+.questionTitle,
+.mood-question {
   font-size: 10rem;
   margin: 0 auto;
   text-align: center;
@@ -56,7 +57,7 @@ button {
   font-size: 3rem;
   border-radius: 10px;
   border: 1px solid gray;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
 button:hover {
@@ -78,7 +79,7 @@ button:active {
 .drink-button img {
   width: 100px;
   height: 100px;
-  margin-bottom: 10px;
+  margin-bottom: -25px;
 }
 
 .results-container {
@@ -89,13 +90,27 @@ button:active {
   flex-wrap: wrap;
 }
 
+/*  meal buttons  */
+
+.food-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.meal-icon {
+  width: 100px;
+  height: 100px;
+  margin-bottom: -25px;
+}
+
 /* results cards */
 
 .card {
   border-radius: 20px;
   margin-bottom: 64px;
   font-family: Georgia, sans-serif;
-
 }
 
 img {

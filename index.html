@@ -81,7 +81,13 @@
     </div>
     <h1 class="questionTitle"></h1>
     <div class="drink-btns hide">
-      <button class="drinks drink-button" id="shake"><img src="assets/drinks/shake.png" alt="a picture of a milkshake" id="shakeIcon">Shake</button>
+      <button class="drinks drink-button" id="shake">
+        <img
+          src="assets/drinks/shake.png"
+          alt="a picture of a milkshake"
+          id="shakeIcon"
+        />Shake
+      </button>
 
       <button class="drinks drink-button" id="cocktail">
         <img
@@ -99,10 +105,10 @@
       </button>
       <button class="drinks drink-button" id="coffeeTea">
         <img
-        src="assets/drinks/coffeeTea.png"
-        alt="a picture of a hot drink"
-        id="coffeeTeaIcon"
-      />Coffee / Tea
+          src="assets/drinks/coffeeTea.png"
+          alt="a picture of a hot drink"
+          id="coffeeTeaIcon"
+        />Coffee / Tea
       </button>
       <button class="drinks drink-button" id="surprise-me">
         <img
@@ -114,11 +120,42 @@
     </div>
 
     <div class="food-btns hide">
-      <button class="foods food-button" id="vegan">Vegan</button>
-      <button class="foods food-button" id="vegeterian">Vegeterian</button>
-      <button class="foods food-button" id="meat">Meat</button>
-      <button class="foods food-button" id="seafood">Seafood</button>
-      <button class="foods food-button" id="surprise">Surprise Me</button>
+      <button class="foods food-button" id="vegan">
+        <img
+          class="meal-icon"
+          src="./assets/meals/vegan.png"
+          alt="vegan icon"
+        />
+        Vegan
+      </button>
+      <button class="foods food-button" id="vegeterian">
+        <img
+          class="meal-icon"
+          src="./assets/meals/vegetarian.png"
+          alt="vegetarian icon"
+        />Vegeterian
+      </button>
+      <button class="foods food-button" id="meat">
+        <img
+          class="meal-icon"
+          src="./assets/meals/meat.png"
+          alt="meat icon"
+        />Meat
+      </button>
+      <button class="foods food-button" id="seafood">
+        <img
+          class="meal-icon"
+          src="./assets/meals/seafood.png"
+          alt="seafood icon"
+        />Seafood
+      </button>
+      <button class="foods food-button" id="surprise">
+        <img
+          class="meal-icon"
+          src="./assets/meals/surprise.png"
+          alt="surprise-me icon"
+        />Surprise Me
+      </button>
     </div>
 
     <div class="hide" id="results-container">
@@ -133,15 +170,12 @@
           />
           <ul id="drinkCardUL" style="list-style-type: none"></ul>
           <p class="card-text" id="drinkCardInstructions"></p>
-         
         </div>
       </div>
 
       <div id="meal-card" class="card" style="width: 72rem"></div>
     </div>
 
-
-    
     <!-- Bootsrap jQuery -->
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
