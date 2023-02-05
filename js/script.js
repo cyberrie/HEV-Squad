@@ -97,8 +97,6 @@ drinkBtns.forEach(function (drinkBtn) {
 
     userDrinkChoice = selectedDrink;
 
-    userDrinkChoice = selectedDrink;
-
     chosenSelectedDrink(userDrinkChoice);
   });
 });
@@ -306,6 +304,45 @@ function renderMeal(mealDetails) {
   questionTitle.innerHTML = "";
   // Remove Buttons
   document.querySelector(".food-btns").innerHTML = "";
-  let containerTextHtml = `<div><button class='save-button'><img class='save-icon'src="./assets/save.png" alt="save-icon">Save</button></div>`;
+  let containerTextHtml = `<div><button class='save-button'><img class='save-icon'src="./assets/save.png" alt="save-icon">Save</button><h2>${message}</h2></div>`;
   container.innerHTML = containerTextHtml;
 }
+
+let quotes = {
+  angry: [
+    "For every minute you remain angry, you give up sixty seconds of peace of mind.",
+    "Anger is an acid that can do more harm to the vessel in which it is stored than to anything on which it is poured.",
+  ],
+  happy: [
+    "Whoever is happy will make others happy too.",
+    "Believe you can and you're halfway there.",
+  ],
+  sad: [
+    "Some days are just bad days, that's all. You have to experience sadness to know happiness, and I remind myself that not every day is going to be a good day, that's just the way it is!",
+    "Be happy for this moment. This moment is your life.",
+  ],
+  surprised: [
+    "If you're changing the world, you're working on important things. You're excited to get up in the morning.",
+    "Think in the morning. Act in the noon. Eat in the evening. Sleep in the night.",
+  ],
+};
+
+//Function for generating a random quote based on the selected mood.
+let message;
+landingPage.addEventListener("click", function (event) {
+  let randomIndex = Math.floor(Math.random() * 2);
+  let selectedQuote = event.target.id;
+  if (selectedQuote === "selectAngry") {
+    message = quotes.angry[randomIndex];
+  } else if (selectedQuote === "selectHappy") {
+    message = quotes.happy[randomIndex];
+  } else if (selectedQuote === "selectSad") {
+    message = quotes.happy[randomIndex];
+  } else if (selectedQuote === "selectSalsa") {
+    let arrayQuotes = Object.values(quotes);
+    let randomQuoteArray = arrayQuotes[Math.floor(Math.random() * quoteArrays.length)];
+    let randomQuote = randomQuoteArray[Math.floor(Math.random() * randomArray.length)];
+    message = randomQuote;
+  }
+  return message;
+});
