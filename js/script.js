@@ -306,6 +306,6 @@ function renderMeal(mealDetails) {
   questionTitle.innerHTML = "";
   // Remove Buttons
   document.querySelector(".food-btns").innerHTML = "";
-  let containerTextHtml = `<div><button>Save</button></div>`;
+  let containerTextHtml = `<div><button class='save-button'><img class='save-icon'src="./assets/save.png" alt="save-icon">Save</button></div>`;
   container.innerHTML = containerTextHtml;
 }
