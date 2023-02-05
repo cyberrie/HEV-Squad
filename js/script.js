@@ -308,4 +308,20 @@ function renderMeal(mealDetails) {
   document.querySelector(".food-btns").innerHTML = "";
   let containerTextHtml = `<div><button class='save-button'><img class='save-icon'src="./assets/save.png" alt="save-icon">Save</button></div>`;
   container.innerHTML = containerTextHtml;
+  setCardHeight();
 }
+
+/// review this with a TA perhaps
+
+// // Results cards height to match the higher one
+
+// function setCardHeight() {
+//   const drinkCard = document.getElementById("drink-card");
+//   const mealCard = document.getElementById("meal-card");
+
+//   window.requestAnimationFrame(() => {
+//     const cardHeight = mealCard.offsetHeight + "px";
+
+//     drinkCard.style.height = cardHeight + "px";
+//   });
+// }

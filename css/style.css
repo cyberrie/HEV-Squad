@@ -9,7 +9,11 @@
 
 html {
   font-size: 62.5%;
-  background-color: var(--primary-color2);
+}
+
+body {
+  background: linear-gradient(90deg, #eeefeb, #ddeac1);
+  color: #494449 !important;
 }
 
 h1 {
@@ -50,7 +54,7 @@ h1 {
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
-  gap: 32px;
+  gap: 42px;
   margin-top: 64px;
 }
 
@@ -121,6 +125,7 @@ button:active {
   border-radius: 20px;
   margin-bottom: 64px;
   font-family: Georgia, sans-serif;
+  background-color: rgba(241, 227, 227, 0.666);
 }
 
 img {
@@ -129,6 +134,12 @@ img {
 
 .card-img-top {
   object-fit: cover;
+  height: 30vw;
+  border-radius: 20%;
+}
+
+.card {
+  border: none;
 }
 
 ul {
