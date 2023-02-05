@@ -374,7 +374,7 @@ function setCardHeight() {
   console.log(`mealCard height: ${mealCard.offsetHeight}`);
 
   window.requestAnimationFrame(() => {
-    const cardHeight = mealCard.offsetHeight + "px";
+    const cardHeight = mealCard.offsetHeight;
 
     console.log(`Setting drinkCard height to: ${cardHeight}`);
 
