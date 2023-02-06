@@ -32,7 +32,7 @@ let drinkCardUL = document.getElementById("drinkCardUL");
 let foodBtns = document.querySelectorAll(".foods");
 let foodBtn = document.querySelector(".food-button");
 let vegan = document.querySelector("#vegan");
-let vegeterian = document.querySelector("#vegeterian");
+let vegeterian = document.querySelector("#vegetarian");
 let meat = document.querySelector("#meat");
 let seafood = document.querySelector("#seafood");
 let surprise = document.querySelector("#surprise");
@@ -40,10 +40,10 @@ let surprise = document.querySelector("#surprise");
 // Questions based of which cocktails/ food will be rendered
 let questions = [
   {
-    title: "Are you thirsty?",
+    title: "Fancy a drink?",
   },
   {
-    title: "Wanna bite?",
+    title: "Feeling peckish?",
   },
 ];
 
@@ -283,7 +283,7 @@ function renderMeal(mealDetails) {
 
   // Render on the page
   let mealCard = document.querySelector("#meal-card");
-  let mealName = mealDetails[0].strMeal;
+  var mealName = mealDetails[0].strMeal;
   let mealImg = mealDetails[0].strMealThumb;
   let mealIngr = stringIngr;
   let mealInstr = mealDetails[0].strInstructions;
@@ -296,8 +296,8 @@ function renderMeal(mealDetails) {
    <img class="card-img-top" alt="image of a meal" src='${mealImg}'>
    <h2 style="padding-left: 20px; margin-bottom: 20px;">Ingredients:</h2>
    <ul>${ingredients}</ul>
-   <p style='font-size: 12px;'class="card-text">Instructions: ${mealInstr}</p>`;
-
+   <p style='font-size: 12px;'class="card-text">Instructions: ${mealInstr}</p>
+   <h3><img src="./assets/favorites/pink-plus-icon.png" width="100px" height="100px" alt="pink-plus-icon">Add to favorites</h3>`;
   mealCard.innerHTML = htmlMealData;
   resultsContainer.classList.remove("hide");
   resultsContainer.classList.add("results-container");
@@ -305,10 +305,12 @@ function renderMeal(mealDetails) {
   questionTitle.innerHTML = "";
   // Remove Buttons
   document.querySelector(".food-btns").innerHTML = "";
-  let containerTextHtml = `<div class="save-quote"> <div style="text-align:center"><button class='save-button'><img class='save-icon'src="./assets/save.png" alt="save-icon">Save</button></div> <h2 class="message-quote">${message}</h2></div> `;
+  let containerTextHtml = `<div class="save-quote"> <div style="text-align:center"> <a href="favorites.html"><<button class='save-button'><img class='save-icon'src="./assets/favorites/hearts-icon.png" alt="hearts-icon">View favorites</button></a></div> <h2 class="message-quote">${message}</h2></div> `;
   container.innerHTML = containerTextHtml;
   setCardHeight();
 }
+
+
 
 let quotes = {
   angry: [
@@ -370,14 +372,35 @@ landingPage.addEventListener("click", function (event) {
 function setCardHeight() {
   const drinkCard = document.getElementById("drink-card");
   const mealCard = document.getElementById("meal-card");
-
+  
   console.log(`mealCard height: ${mealCard.offsetHeight}`);
-
+  
   window.requestAnimationFrame(() => {
     const cardHeight = mealCard.offsetHeight;
 
     console.log(`Setting drinkCard height to: ${cardHeight}`);
-
+    
     drinkCard.style.height = cardHeight;
   });
+
+  // function favoriteMeal() {
+  //   favorites.push(newRecipe);
+  //   localStorage.setItem("favorites", JSON.stringify(favorites));
+    
+  //   location.href = "favorites.html";
+  // }
+  
+  // mealName.addEventListener("click", favoriteMeal);
+  
+  
+  function favoriteDrink() {
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  favorites.push(newRecipe);
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+  
+  location.href = "./favorites.html";
+  }
+  
+  drinkCard.addEventListener("click", favoriteDrink);
+
 }
