@@ -29,6 +29,7 @@ let drinkCardInstructions = document.getElementById("drinkCardInstructions");
 let drinkCardUL = document.getElementById("drinkCardUL");
 
 // Foods
+let userFoodChoice;
 let foodBtns = document.querySelectorAll(".foods");
 let foodBtn = document.querySelector(".food-button");
 let vegan = document.querySelector("#vegan");
@@ -193,6 +194,7 @@ function chosenSelectedDrink(userDrinkChoice) {
 
 // Function to fetch meal data based on user input
 function fetchMealData(category) {
+  userFoodChoice = category;
   // Hook Meat user input into all meat options on the API [beef, chicken, lamb, pork, goat]
   if (category === "Meat") {
     // meat options on categories API
@@ -409,6 +411,19 @@ function setCardHeight() {
     drinkCard.style.height = cardHeight;
   });
 }
+
+
+let shuffleBtn = document.getElementById('shuffle');
+
+shuffleBtn.addEventListener('click', () => shuffleItems())
+
+
+function shuffleItems() {
+  chosenSelectedDrink(userDrinkChoice)
+  fetchMealData(userFoodChoice);
+}
+
+
 // function favoriteMeal() {
 //   favorites.push(newRecipe);
 //   localStorage.setItem("favorites", JSON.stringify(favorites));
