@@ -144,7 +144,7 @@ function chosenSelectedDrink(userDrinkChoice) {
           }
           drinkCardName.textContent = `${randomDrink.strDrink}`;
           drinkCardImg.src = `${drinkDetails[0].strDrinkThumb}`;
-          drinkCardInstructions.textContent = `${drinkDetails[0].strInstructions}`;
+          drinkCardInstructions.textContent = `Instructions: ${drinkDetails[0].strInstructions}`;
           let cardIngMeasure = drinkIngredientArray
             .map(
               (ingredient, index) =>
@@ -153,19 +153,23 @@ function chosenSelectedDrink(userDrinkChoice) {
             .join("");
           drinkCardUL.innerHTML = cardIngMeasure;
           drinkResults.classList.remove("hide");
-          let newDrinkIngStorage  = {drinkName: `${randomDrink.strDrink}`,ingredients: `${cardIngMeasure}`,instructions: `${drinkDetails[0].strInstructions}`};
+          // Create a variable storing drink values
+          let newDrinkIngStorage = {
+            drinkName: `${randomDrink.strDrink}`,
+            ingredients: `${cardIngMeasure}`,
+            instructions: `${drinkDetails[0].strInstructions}`,
+          };
           let drinks = localStorage.getItem("Drinks");
 
-          if (drinks) { //This checks if users is true and not equal to null or undefined.
+          if (drinks) {
+            //This checks if users is true and not equal to null or undefined.
             drinks = JSON.parse(drinks); //JSON.parse converts the string value into a Javascript object and is necessary because when items are added to localStorage they're stored as a string//
-            drinks.push(newDrinkIngStorage);//This adds the new user objects to the array of existing users. 
-    
-        } else {
-          drinks = [newDrinkIngStorage]; //If there are no existing items callled user, then we create a new array as the user item.
-    
-        }
-        localStorage.setItem("Drinks", JSON.stringify(drinks));
-          console.log(drinks)
+            drinks.push(newDrinkIngStorage); //This adds the new user objects to the array of existing users.
+          } else {
+            drinks = [newDrinkIngStorage]; //If there are no existing items callled user, then we create a new array as the user item.
+          }
+          localStorage.setItem("Drinks", JSON.stringify(drinks));
+          console.log(drinks);
         });
     });
 }
@@ -306,10 +310,10 @@ function renderMeal(mealDetails) {
     .join("");
 
   let htmlMealData = `<h1 class="card-title">${mealName}</h1>
-   <img class="card-img-top" alt="image of a meal" src='${mealImg}'>
+   <img class="card-img-top" id="mealCardImg" alt="image of a meal" src='${mealImg}'>
    <h2 style="padding-left: 20px; margin-bottom: 20px;">Ingredients:</h2>
    <ul>${ingredients}</ul>
-   <p style='font-size: 12px;'class="card-text">Instructions: ${mealInstr}</p>`;
+   <p style='font-size: 15px;'class="card-text">Instructions: ${mealInstr}</p>`;
 
   mealCard.innerHTML = htmlMealData;
   resultsContainer.classList.remove("hide");
