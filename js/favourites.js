@@ -1,4 +1,4 @@
-let highScores = document.getElementById('favs')
+let favourites = document.getElementById('favs')
 
 //This function will display the user initials and scores//
 function displayFavourites() {
@@ -14,13 +14,14 @@ function displayFavourites() {
 
     for (let i = 0; i < user.length; i++) {
 
-    let message = user[i].drinkName + ' ' + user[i].instructions + user[i].ingredients;
+    let message = `<h1>${user[i].drinkName}</h1> 
+    <img src=${user[i].drinkImage}> <p>${user[i].instructions}</p> <ul>${user[i].ingredients}</ul>`;
 
     let li = document.createElement('div');
 
     li.innerHTML = message;
     
-    highScores.appendChild(li);
+    favourites.appendChild(li);
     }
 } 
 
@@ -44,15 +45,18 @@ function displayMeals() {
     console.log(user);
 
     for (let i = 0; i < user.length; i++) {
-    let message = user[i].mealName + ' ' + user[i].instructions + user[i].ingredients;
 
-    let li = document.createElement('div');
-
-    li.innerHTML = message;
+        let message = `<h1>${user[i].mealName}</h1> 
+        <img src=${user[i].mealImg}> <p>${user[i].instructions}</p> <ul>${user[i].ingredients}</ul>`;
     
-    highScores.appendChild(li);
+        let li = document.createElement('div');
+    
+        li.innerHTML = message;
+        
+        favourites.appendChild(li);
+        }
+
     }
-}
 
 if(localStorage.getItem("meals") != null){
     displayMeals();

@@ -153,19 +153,23 @@ function chosenSelectedDrink(userDrinkChoice) {
             .join("");
           drinkCardUL.innerHTML = cardIngMeasure;
           drinkResults.classList.remove("hide");
-          let newDrinkIngStorage  = {drinkName: `${randomDrink.strDrink}`,ingredients: `${cardIngMeasure}`,instructions: `${drinkDetails[0].strInstructions}`};
+          let newDrinkIngStorage = {
+            drinkName: `${randomDrink.strDrink}`,
+            drinkImage: `${drinkDetails[0].strDrinkThumb}`,
+            ingredients: `${cardIngMeasure}`,
+            instructions: `${drinkDetails[0].strInstructions}`,
+          };
           let drinks = localStorage.getItem("Drinks");
 
-          if (drinks) { //This checks if users is true and not equal to null or undefined.
+          if (drinks) {
+            //This checks if users is true and not equal to null or undefined.
             drinks = JSON.parse(drinks); //JSON.parse converts the string value into a Javascript object and is necessary because when items are added to localStorage they're stored as a string//
-            drinks.push(newDrinkIngStorage);//This adds the new user objects to the array of existing users. 
-    
-        } else {
-          drinks = [newDrinkIngStorage]; //If there are no existing items callled user, then we create a new array as the user item.
-    
-        }
-        localStorage.setItem("Drinks", JSON.stringify(drinks));
-          console.log(drinks)
+            drinks.push(newDrinkIngStorage); //This adds the new user objects to the array of existing users.
+          } else {
+            drinks = [newDrinkIngStorage]; //If there are no existing items callled user, then we create a new array as the user item.
+          }
+          localStorage.setItem("Drinks", JSON.stringify(drinks));
+          console.log(drinks);
         });
     });
 }
@@ -310,7 +314,7 @@ function renderMeal(mealDetails) {
    <h2 style="padding-left: 20px; margin-bottom: 20px;">Ingredients:</h2>
    <ul>${ingredients}</ul>
    <p style='font-size: 12px;'class="card-text">Instructions: ${mealInstr}</p>
-   <h3 id = "mealFavourite" ><img src="./assets/favorites/pink-plus-icon.png" width="100px" height="100px" alt="pink-plus-icon">Add to favorites</h3>`;
+   <h3 id = "mealFavourite" ><img src="./assets/favourites/pink-plus-icon.png" width="100px" height="100px" alt="pink-plus-icon">Add to favourites</h3>`;
   mealCard.innerHTML = htmlMealData;
   resultsContainer.classList.remove("hide");
   resultsContainer.classList.add("results-container");
@@ -318,10 +322,10 @@ function renderMeal(mealDetails) {
   questionTitle.innerHTML = "";
   // Remove Buttons
   document.querySelector(".food-btns").innerHTML = "";
-  let containerTextHtml = `<div class="save-quote"> <div style="text-align:center"> <a href="favorites.html"><<button class='save-button'><img class='save-icon'src="./assets/favorites/hearts-icon.png" alt="hearts-icon">View favorites</button></a></div> <h2 class="message-quote">${message}</h2></div> `;
+  let containerTextHtml = `<div class="save-quote"> <div style="text-align:center"> <a href="favourites.html"><button class='save-button'><img class='save-icon'src="./assets/favourites/hearts-icon.png" alt="hearts-icon">View favourites</button></a></div> <h2 class="message-quote">${message}</h2></div> `;
   container.innerHTML = containerTextHtml;
   setCardHeight();
-  let newMealStorage  = {mealName: `${mealName}`,ingredients: `${ingredients}`,instructions: `${mealInstr}`};
+  let newMealStorage = { mealName, mealImg, ingredients, instructions: mealInstr};
   let meals = localStorage.getItem("Meals");
 
   if (meals) {
@@ -331,12 +335,8 @@ function renderMeal(mealDetails) {
     meals = [newMealStorage];
   }
   localStorage.setItem("Meals", JSON.stringify(meals));
-    console.log(meals)
-
-  }
-
-
-
+  console.log(meals);
+}
 
 let quotes = {
   angry: [
@@ -398,37 +398,35 @@ landingPage.addEventListener("click", function (event) {
 function setCardHeight() {
   const drinkCard = document.getElementById("drink-card");
   const mealCard = document.getElementById("meal-card");
-  
+
   console.log(`mealCard height: ${mealCard.offsetHeight}`);
-  
+
   window.requestAnimationFrame(() => {
     const cardHeight = mealCard.offsetHeight;
 
     console.log(`Setting drinkCard height to: ${cardHeight}`);
-    
+
     drinkCard.style.height = cardHeight;
   });
 }
-  // function favoriteMeal() {
-  //   favorites.push(newRecipe);
-  //   localStorage.setItem("favorites", JSON.stringify(favorites));
-    
-  //   location.href = "favorites.html";
-  // }
-  
-  // mealName.addEventListener("click", favoriteMeal);
-  
-  // let mealFavourite = getElementById("addFavourite")
-  
-  // function favoriteMeal(htmlMealData) {
-  //   let newRecipe = htmlMealData;
-  //   favorites.push(newRecipe);
-  //   localStorage.setItem("favorites", JSON.stringify(favorites));
-    
-  //   // location.href = "./favorites.html";
-  // }
-  
-  // // let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-  // mealFavourite.addEventListener("click", favoriteMeal);
+// function favoriteMeal() {
+//   favorites.push(newRecipe);
+//   localStorage.setItem("favorites", JSON.stringify(favorites));
 
+//   location.href = "favorites.html";
+// }
 
+// mealName.addEventListener("click", favoriteMeal);
+
+// let mealFavourite = getElementById("addFavourite")
+
+// function favoriteMeal(htmlMealData) {
+//   let newRecipe = htmlMealData;
+//   favorites.push(newRecipe);
+//   localStorage.setItem("favorites", JSON.stringify(favorites));
+
+//   // location.href = "./favorites.html";
+// }
+
+// // let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+// mealFavourite.addEventListener("click", favoriteMeal);
