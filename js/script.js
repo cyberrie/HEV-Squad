@@ -405,17 +405,17 @@ function setCardHeight() {
   
   // mealName.addEventListener("click", favoriteMeal);
   
-  let mealFavourite = getElementById("addFavourite")
+  // let mealFavourite = getElementById("addFavourite")
   
-  function favoriteMeal(htmlMealData) {
-    let newRecipe = htmlMealData;
-    favorites.push(newRecipe);
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+  // function favoriteMeal(htmlMealData) {
+  //   let newRecipe = htmlMealData;
+  //   favorites.push(newRecipe);
+  //   localStorage.setItem("favorites", JSON.stringify(favorites));
     
-    // location.href = "./favorites.html";
-  }
+  //   // location.href = "./favorites.html";
+  // }
   
-  // let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-  mealFavourite.addEventListener("click", favoriteMeal);
+  // // let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  // mealFavourite.addEventListener("click", favoriteMeal);
 
 
