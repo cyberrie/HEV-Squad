@@ -322,7 +322,7 @@ function renderMeal(mealDetails) {
   questionTitle.innerHTML = "";
   // Remove Buttons
   document.querySelector(".food-btns").innerHTML = "";
-  let containerTextHtml = `<div class="save-quote"> <div style="text-align:center"> <a href="favorites.html"><<button class='save-button'><img class='save-icon'src="./assets/favorites/hearts-icon.png" alt="hearts-icon">View favorites</button></a></div> <h2 class="message-quote">${message}</h2></div> `;
+  let containerTextHtml = `<div class="save-quote"> <div style="text-align:center"> </div> <h2 class="message-quote">${message}</h2></div> `;
   container.innerHTML = containerTextHtml;
   setCardHeight();
   let newMealStorage = {
