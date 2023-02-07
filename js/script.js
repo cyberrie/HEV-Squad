@@ -28,7 +28,7 @@ let drinkCardImg = document.getElementById("drinkCardImg");
 let drinkCardInstructions = document.getElementById("drinkCardInstructions");
 let drinkCardUL = document.getElementById("drinkCardUL");
 
-// Foods
+// Meals
 let foodBtns = document.querySelectorAll(".foods");
 let foodBtn = document.querySelector(".food-button");
 let vegan = document.querySelector("#vegan");
@@ -101,8 +101,9 @@ drinkBtns.forEach(function (drinkBtn) {
   });
 });
 
-// addEventListener to foodBtn
+//www.thecocktaildb.com/api/json/v1/1/list.php?c=list - this list all the drink categories
 
+// 'Cocktail', 'Soft Drink', 'cofee/tea', 'Other / Unknown', 'Shake', 'Punch / Party Drink', 'Beer', 'Cocoa'.
 function chosenSelectedDrink(userDrinkChoice) {
   console.log(userDrinkChoice);
 
@@ -142,51 +143,40 @@ function chosenSelectedDrink(userDrinkChoice) {
               drinkMeasureArray.push(measure);
             }
           }
-          drinkCardName.textContent = `${randomDrink.strDrink}`;
-          drinkCardImg.src = `${drinkDetails[0].strDrinkThumb}`;
-          drinkCardInstructions.textContent = `Instructions: ${drinkDetails[0].strInstructions}
+          cardName.textContent = `${randomDrink.strDrink}`;
+          cardImg.src = `${drinkDetails[0].strDrinkThumb}`;
+          cardInstructions.textContent = `Instructions: ${drinkDetails[0].strInstructions}
         `;
-          let cardIngMeasure = drinkIngredientArray
+          let ingredients = drinkIngredientArray
             .map(
               (ingredient, index) =>
                 `<li>${ingredient}, ${drinkMeasureArray[index]}</li>`
             )
             .join("");
-          drinkCardUL.innerHTML = cardIngMeasure;
+          drinkCardUL.innerHTML = ingredients;
           drinkResults.classList.remove("hide");
           // Create a variable storing drink values
-          let newDrinkIngStorage = {
-            drinkName: `${randomDrink.strDrink}`,
-            ingredients: `${cardIngMeasure}`,
-            instructions: `${drinkDetails[0].strInstructions}`,
+          let cardStorage = {
+            cardName: randomDrink.strDrink,
+            cardImg: drinkDetails[0].strDrinkThumb,
+            ingredients,
+            cardInstructions: drinkDetails[0].strInstructions,
           };
+
           let drinks = localStorage.getItem("Drinks");
 
           if (drinks) {
             //This checks if users is true and not equal to null or undefined.
             drinks = JSON.parse(drinks); //JSON.parse converts the string value into a Javascript object and is necessary because when items are added to localStorage they're stored as a string//
-            drinks.push(newDrinkIngStorage); //This adds the new user objects to the array of existing users.
+            drinks.push(cardStorage); //This adds the new user objects to the array of existing users.
           } else {
-            drinks = [newDrinkIngStorage]; //If there are no existing items callled user, then we create a new array as the user item.
+            drinks = [cardStorage]; //If there are no existing items callled user, then we create a new array as the user item.
           }
           localStorage.setItem("Drinks", JSON.stringify(drinks));
           console.log(drinks);
         });
     });
 }
-
-//www.thecocktaildb.com/api/json/v1/1/list.php?c=list - this list all the drink categories
-
-// 'Cocktail', 'Soft Drink', 'cofee/tea', 'Other / Unknown', 'Shake', 'Punch / Party Drink', 'Beer', 'Cocoa'.
-// based on the user selection we can then run a query to filter by that category, e.g user selects cocktails we will run c=cocktails and then provide them with a random drink from the fetch?
-
-//ingredients has 15 choices, i should loop through each and display the ingredient if it has a value.
-
-//Issues
-
-//How do we or are we going to segment the drinks based upon the mood? e.g if they're happy what do we recommend?
-//No option for water in the API, so we could hard-core this instead?
-//ICEBOX - randomise the drink and meal selection?
 
 // API mealsDB
 
@@ -301,20 +291,20 @@ function renderMeal(mealDetails) {
 
   // Render on the page
   let mealCard = document.querySelector("#meal-card");
-  var mealName = mealDetails[0].strMeal;
-  let mealImg = mealDetails[0].strMealThumb;
+  var cardName = mealDetails[0].strMeal;
+  let cardImg = mealDetails[0].strMealThumb;
   let mealIngr = stringIngr;
-  let mealInstr = mealDetails[0].strInstructions;
+  let cardInstructions = mealDetails[0].strInstructions;
   let ingrQuant = stringMeasure;
   let ingredients = mealIngr
     .map((ingredient, index) => `<li>${ingredient}, ${ingrQuant[index]}</li>`)
     .join("");
 
-  let htmlMealData = `<h1 class="card-title">${mealName}</h1>
-   <img class="card-img-top" id="mealCardImg" alt="image of a meal" src='${mealImg}'>
+  let htmlMealData = `<h1 class="card-title">${cardName}</h1>
+   <img class="card-img-top" id="mealCardImg" alt="image of a meal" src='${cardImg}'>
    <h2 style="padding-left: 20px; margin-bottom: 20px;">Ingredients:</h2>
    <ul>${ingredients}</ul>
-   <p style='font-size: 15px;'class="card-text">Instructions: ${mealInstr}</p>
+   <p style='font-size: 15px;'class="card-text">Instructions: ${cardInstructions}</p>
    <img  id = "mealFavourite"  src="./assets/favorites/add-to-favs.png" width="100px" height="100px" alt="pink-plus-icon">`;
   mealCard.innerHTML = htmlMealData;
   resultsContainer.classList.remove("hide");
@@ -326,23 +316,27 @@ function renderMeal(mealDetails) {
   let containerTextHtml = `<div class="save-quote"> <div style="text-align:center"> </div> <h2 class="message-quote">${message}</h2></div> `;
   container.innerHTML = containerTextHtml;
   setCardHeight();
-  let newMealStorage = {
-    mealName: `${mealName}`,
-    ingredients: `${ingredients}`,
-    instructions: `${mealInstr}`,
+  let cardStorage = {
+    cardName: mealDetails[0].strMeal,
+    cardImg: mealDetails[0].strMealThumb,
+    ingredients,
+    cardInstructions: mealDetails[0].strInstructions,
   };
+
+  console.log(cardStorage);
   let meals = localStorage.getItem("Meals");
 
   if (meals) {
     meals = JSON.parse(meals);
-    meals.push(newMealStorage);
+    meals.push(cardStorage);
   } else {
-    meals = [newMealStorage];
+    meals = [cardStorage];
   }
   localStorage.setItem("Meals", JSON.stringify(meals));
   console.log(meals);
 }
 
+// Quotes
 let quotes = {
   angry: [
     "For every minute you remain angry, you give up sixty seconds of peace of mind. - R. W. Emerson",
@@ -396,10 +390,7 @@ landingPage.addEventListener("click", function (event) {
   return message;
 });
 
-// / review this with a TA perhaps
-
-// Results cards height to match the higher one
-
+// Drink card height to match the meal card height
 function setCardHeight() {
   const drinkCard = document.getElementById("drink-card");
   const mealCard = document.getElementById("meal-card");
@@ -414,24 +405,3 @@ function setCardHeight() {
     drinkCard.style.height = cardHeight;
   });
 }
-// function favoriteMeal() {
-//   favorites.push(newRecipe);
-//   localStorage.setItem("favorites", JSON.stringify(favorites));
-
-//   location.href = "favorites.html";
-// }
-
-// mealName.addEventListener("click", favoriteMeal);
-
-// let mealFavourite = getElementById("addFavourite")
-
-// function favoriteMeal(htmlMealData) {
-//   let newRecipe = htmlMealData;
-//   favorites.push(newRecipe);
-//   localStorage.setItem("favorites", JSON.stringify(favorites));
-
-//   // location.href = "./favorites.html";
-// }
-
-// // let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-// mealFavourite.addEventListener("click", favoriteMeal);
