@@ -11,6 +11,7 @@ let questionTitle = document.querySelector(".questionTitle");
 let options = document.querySelector("#drink-options");
 let resultsContainer = document.getElementById("results-container");
 let container = document.querySelector(".container");
+let shuffleBtn = document.getElementById('shuffle');
 
 // Drinks
 let userDrinkChoice;
@@ -174,23 +175,6 @@ function chosenSelectedDrink(userDrinkChoice) {
         });
     });
 }
-
-//www.thecocktaildb.com/api/json/v1/1/list.php?c=list - this list all the drink categories
-
-// 'Cocktail', 'Soft Drink', 'cofee/tea', 'Other / Unknown', 'Shake', 'Punch / Party Drink', 'Beer', 'Cocoa'.
-// based on the user selection we can then run a query to filter by that category, e.g user selects cocktails we will run c=cocktails and then provide them with a random drink from the fetch?
-
-//ingredients has 15 choices, i should loop through each and display the ingredient if it has a value.
-
-//Issues
-
-//How do we or are we going to segment the drinks based upon the mood? e.g if they're happy what do we recommend?
-//No option for water in the API, so we could hard-core this instead?
-//ICEBOX - randomise the drink and meal selection?
-
-// API mealsDB
-
-// user input - API meal categories: vegan, vegeterian, meat[beef, chicken, lamb, pork, goat], seafood, surprise me: mix them all up? only mixed vegan, vegeterian and seafood as meats are a pain
 
 // Function to fetch meal data based on user input
 function fetchMealData(category) {
@@ -412,16 +396,15 @@ function setCardHeight() {
   });
 }
 
-
-let shuffleBtn = document.getElementById('shuffle');
-
-shuffleBtn.addEventListener('click', () => shuffleItems())
-
-
+//This function calls both the meal and drink functions again to render a different result with the users same preferences.
 function shuffleItems() {
   chosenSelectedDrink(userDrinkChoice)
   fetchMealData(userFoodChoice);
 }
+shuffleBtn.addEventListener('click', () => shuffleItems())
+
+
+
 
 
 // function favoriteMeal() {
