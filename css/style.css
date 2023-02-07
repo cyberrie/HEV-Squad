@@ -31,8 +31,8 @@ a {
 /* favs button */
 
 .star {
-  height: 90px !important;
-  width: 90px !important;
+  height: 100px !important;
+  width: 100px !important;
   margin: 10px 0 0 10px;
 }
 
@@ -114,11 +114,6 @@ button:active {
   height: 190px;
 }
 
-.save-icon {
-  width: 100px;
-  height: 100px;
-}
-
 /*testing drink buttons with images*/
 
 .wrap-btns {
@@ -181,6 +176,18 @@ img {
 
 .card {
   border: none;
+}
+
+#drinkFavourite {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  height: 100%;
+}
+
+#mealFavourite:hover,
+#drinkFavourite:hover {
+  cursor: pointer;
 }
 
 ul {

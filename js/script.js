@@ -144,7 +144,8 @@ function chosenSelectedDrink(userDrinkChoice) {
           }
           drinkCardName.textContent = `${randomDrink.strDrink}`;
           drinkCardImg.src = `${drinkDetails[0].strDrinkThumb}`;
-          drinkCardInstructions.textContent = `Instructions: ${drinkDetails[0].strInstructions}`;
+          drinkCardInstructions.textContent = `Instructions: ${drinkDetails[0].strInstructions}
+        `;
           let cardIngMeasure = drinkIngredientArray
             .map(
               (ingredient, index) =>
@@ -314,7 +315,7 @@ function renderMeal(mealDetails) {
    <h2 style="padding-left: 20px; margin-bottom: 20px;">Ingredients:</h2>
    <ul>${ingredients}</ul>
    <p style='font-size: 15px;'class="card-text">Instructions: ${mealInstr}</p>
-   <h3 id = "mealFavourite" ><img src="./assets/favorites/pink-plus-icon.png" width="100px" height="100px" alt="pink-plus-icon">Add to favorites</h3>`;
+   <img  id = "mealFavourite"  src="./assets/favorites/add-to-favs.png" width="100px" height="100px" alt="pink-plus-icon">`;
   mealCard.innerHTML = htmlMealData;
   resultsContainer.classList.remove("hide");
   resultsContainer.classList.add("results-container");
