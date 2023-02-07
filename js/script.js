@@ -153,6 +153,19 @@ function chosenSelectedDrink(userDrinkChoice) {
             .join("");
           drinkCardUL.innerHTML = cardIngMeasure;
           drinkResults.classList.remove("hide");
+          let newDrinkIngStorage  = {drinkName: `${randomDrink.strDrink}`,ingredients: `${cardIngMeasure}`,instructions: `${drinkDetails[0].strInstructions}`};
+          let drinks = localStorage.getItem("Drinks");
+
+          if (drinks) { //This checks if users is true and not equal to null or undefined.
+            drinks = JSON.parse(drinks); //JSON.parse converts the string value into a Javascript object and is necessary because when items are added to localStorage they're stored as a string//
+            drinks.push(newDrinkIngStorage);//This adds the new user objects to the array of existing users. 
+    
+        } else {
+          drinks = [newDrinkIngStorage]; //If there are no existing items callled user, then we create a new array as the user item.
+    
+        }
+        localStorage.setItem("Drinks", JSON.stringify(drinks));
+          console.log(drinks)
         });
     });
 }
