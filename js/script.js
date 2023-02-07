@@ -321,7 +321,20 @@ function renderMeal(mealDetails) {
   let containerTextHtml = `<div class="save-quote"> <div style="text-align:center"> <a href="favorites.html"><<button class='save-button'><img class='save-icon'src="./assets/favorites/hearts-icon.png" alt="hearts-icon">View favorites</button></a></div> <h2 class="message-quote">${message}</h2></div> `;
   container.innerHTML = containerTextHtml;
   setCardHeight();
-}
+  let newMealStorage  = {mealName: `${mealName}`,ingredients: `${ingredients}`,instructions: `${mealInstr}`};
+  let meals = localStorage.getItem("Meals");
+
+  if (meals) {
+    meals = JSON.parse(meals);
+    meals.push(newMealStorage);
+  } else {
+    meals = [newMealStorage];
+  }
+  localStorage.setItem("Meals", JSON.stringify(meals));
+    console.log(meals)
+
+  }
+
 
 
 
