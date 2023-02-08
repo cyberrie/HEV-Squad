@@ -24,6 +24,23 @@ h1 {
   font-weight: bold;
 }
 
+a {
+  text-decoration: none;
+}
+
+/* favs button */
+
+.star {
+  height: 100px !important;
+  width: 100px !important;
+  margin: 10px 0 0 10px;
+}
+
+.star:hover {
+  border-radius: 50%;
+  box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, 0.75);
+}
+
 /* landing page container */
 .container,
 .results-quote {
@@ -97,11 +114,6 @@ button:active {
   height: 190px;
 }
 
-.save-icon {
-  width: 100px;
-  height: 100px;
-}
-
 /*testing drink buttons with images*/
 
 .wrap-btns {
@@ -147,7 +159,14 @@ img {
 .card-img-top {
   object-fit: cover;
   height: 30vw;
-  border-radius: 20%;
+}
+
+#drinkCardImg {
+  border-radius: 15% 0 15% 15%;
+}
+
+#mealCardImg {
+  border-radius: 0 15% 15% 15%;
 }
 
 #drink-card,
@@ -157,6 +176,18 @@ img {
 
 .card {
   border: none;
+}
+
+#drinkFavourite {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  height: 100%;
+}
+
+#mealFavourite:hover,
+#drinkFavourite:hover {
+  cursor: pointer;
 }
 
 ul {
@@ -171,7 +202,7 @@ li {
 }
 
 p {
-  font-size: 16px;
+  font-size: 15px;
   padding: 0 20px;
   margin-top: 12px;
   margin-bottom: 28px !important;
