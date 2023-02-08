@@ -438,12 +438,12 @@ function shuffleItems(event) {
     fetchMealData(userFoodChoice);
   }
 }
+
 //event listeners for when the user clicks on shuffle buttons inside either the drink or meal card.
 mealCard.addEventListener("click", () => shuffleItems(event));
 drinkShuffle.addEventListener("click", () => shuffleItems(event));
 
-//Individual add event listeners to add drink or meal to the users favourites list
-
+//event listener to add the current drink to local storage.
 drinkFavourite.addEventListener("click", function () {
   console.log(cardDrinkStorage);
     let drinks = localStorage.getItem("Drinks");
@@ -458,7 +458,7 @@ drinkFavourite.addEventListener("click", function () {
           localStorage.setItem("Drinks", JSON.stringify(drinks));
           console.log(cardDrinkStorage);
 });
-
+//event listener to add the current meal to local storage.
 mealCard.addEventListener("click", function (event) {
   console.log('hello')
  if (event.target.id === "mealFavourite") {
