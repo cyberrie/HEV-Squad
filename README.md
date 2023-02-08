@@ -86,7 +86,7 @@ Things for the future include:
 
 - Using [Geoapify](https://www.geoapify.com/) to provide the user with a map showing their nearest restaurants based on their selected meal and drinks.
 
-- Additional drink options such as soft drinks, water fruit juices.
+- Additional drink options such as soft drinks, water and fruit juices.
 
 - The option to choose either just a cocktail or drink.
 
