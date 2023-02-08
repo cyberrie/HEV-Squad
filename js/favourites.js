@@ -1,4 +1,5 @@
 let favourites = document.getElementById("favs");
+let bin = document.querySelector(".bin");
 
 //This function will display store favorites
 function displayFavourites() {
@@ -40,25 +41,20 @@ function displayFavourites() {
     li.innerHTML = message;
 
     favourites.appendChild(li);
+
+    //unhide clear btn
+    document.querySelector(".bin").classList.remove("hide");
+    // add clear btn
+    document.querySelector(".bin").classList.add("clear-favs");
   }
-
-  setCardHeight();
 }
-
 displayFavourites();
 
-// Drink card height to match the meal card height
-function setCardHeight() {
-  const card1 = document.getElementById("card-one");
-  const card2 = document.getElementById("card-two");
+// function to clear favs
+document.querySelector(".bin").addEventListener("click", function () {
+  document.querySelector(".wrapper").innerHTML = "";
+  localStorage.clear();
 
-  console.log(`card1 height: ${card1.offsetHeight}`);
-
-  window.requestAnimationFrame(() => {
-    const cardHeight = card2.offsetHeight;
-
-    console.log(`Setting card2 height to: ${cardHeight}`);
-
-    card2.style.height = cardHeight;
-  });
-}
+  document.querySelector(".bin").classList.remove("clear-favs");
+  document.querySelector(".bin").classList.add("hide");
+});

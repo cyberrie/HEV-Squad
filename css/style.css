@@ -30,13 +30,16 @@ a {
 
 /* favs button */
 
-.star {
+.star,
+.home,
+.clear {
   height: 100px !important;
   width: 100px !important;
   margin: 10px 0 0 10px;
 }
 
-.star:hover {
+.star:hover,
+.home:hover {
   border-radius: 50%;
   box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, 0.75);
 }
@@ -219,4 +222,11 @@ p {
 #card-one,
 #card-two {
   background-color: #bebdbd1f;
+}
+
+.clear-favs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  cursor: pointer;
 }
