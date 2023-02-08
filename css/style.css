@@ -150,6 +150,7 @@ button:active {
   border-radius: 20px;
   margin-bottom: 64px;
   font-family: Georgia, sans-serif;
+  width: 60rem;
 }
 
 img {
@@ -161,21 +162,17 @@ img {
   height: 30vw;
 }
 
-#drinkCardImg {
-  border-radius: 15% 0 15% 15%;
+#cardImg {
+  border-radius: 20% 0 20% 20%;
 }
 
-#mealCardImg {
-  border-radius: 0 15% 15% 15%;
-}
-
-#drink-card,
-#meal-card {
-  background-color: rgba(241, 227, 227, 0.666);
+.mealCardImg {
+  border-radius: 0 20% 20% 20% !important;
 }
 
 .card {
   border: none;
+  background-color: rgba(241, 227, 227, 0.666);
 }
 
 #drinkFavourite {
@@ -206,4 +203,13 @@ p {
   padding: 0 20px;
   margin-top: 12px;
   margin-bottom: 28px !important;
+}
+
+/* Local storage */
+
+.results-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
 }
