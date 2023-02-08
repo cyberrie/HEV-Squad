@@ -32,12 +32,26 @@ a {
 
 .star,
 .home,
-.clear,
+.clear {
+  height: 100px !important;
+  width: 100px !important;
+  margin: 10px 0 0 10px;
+}
+
 .mealShuffle,
 .drinkShuffle {
   height: 100px !important;
   width: 100px !important;
-  margin: 10px 0 0 10px;
+}
+
+.card-btn-style {
+  border: none !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+}
+
+#no-hover:hover {
+  box-shadow: initial;
 }
 
 .star {
