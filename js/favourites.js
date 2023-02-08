@@ -16,7 +16,6 @@ function displayFavourites() {
   console.log(storedCards);
 
   for (let i = 0; i < storedCards.length; i += 2) {
-
     // display 2 cards next to each other
 
     let meal = storedCards[i];
@@ -56,15 +55,11 @@ function displayFavourites() {
 }
 displayFavourites();
 
-
-
 // function to clear favs
-document.querySelector(".bin").addEventListener("click", function () {
+document.querySelector(".clear-favs").addEventListener("click", function () {
   document.querySelector(".wrapper").innerHTML = "";
   localStorage.clear();
 
-  document.querySelector(".bin").classList.remove("clear-favs");
+  document.querySelector(".clear-favs").classList.remove("clear-favs");
   document.querySelector(".bin").classList.add("hide");
 });
-
-
