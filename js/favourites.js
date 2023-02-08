@@ -1,65 +1,31 @@
-let favourites = document.getElementById('favs')
+let favourites = document.getElementById("favs");
 
-//This function will display the user initials and scores//
+//This function will display store favorites
 function displayFavourites() {
+  let storedDrink = localStorage.getItem("Drinks");
+  let storedMeal = localStorage.getItem("Meals");
 
-    let storedUser = localStorage.getItem("Drinks");
+  let storedCards = [];
+  if (storedDrink != null)
+    storedCards = storedCards.concat(JSON.parse(storedDrink));
+  if (storedMeal != null)
+    storedCards = storedCards.concat(JSON.parse(storedMeal));
 
-    console.log(storedUser);
-    let user = JSON.parse(storedUser);
-    console.log(user.length);
-    console.log(user);
+  console.log(storedCards);
 
+  for (let i = 0; i < storedCards.length; i++) {
+    let message = `<h1>${storedCards[i].cardName}</h1> 
+      <img src=${storedCards[i].cardImg}>
+      <p>Ingredients:</p><ul>${storedCards[i].ingredients}</ul><p> Instructions: ${storedCards[i].cardInstructions}</p>`;
 
-
-    for (let i = 0; i < user.length; i++) {
-
-    let message = `<h1>${user[i].drinkName}</h1> 
-    <img src=${user[i].drinkImage}> <p>${user[i].instructions}</p> <ul>${user[i].ingredients}</ul>`;
-
-    let li = document.createElement('div');
+    let li = document.createElement("div");
 
     li.innerHTML = message;
-    
-    favourites.appendChild(li);
-    }
-} 
 
-if(localStorage.getItem("drinks") != null){
-    displayFavourites();
+    favourites.appendChild(li);
+  }
 }
 
 displayFavourites();
 
-// clearFavourites.addEventListener('click', function (){
-// localStorage.clear();
-// location.reload();
-// });
 
-function displayMeals() {
-    let storedUser = localStorage.getItem("Meals");
-
-    console.log(storedUser);
-    let user = JSON.parse(storedUser);
-    console.log(user.length);
-    console.log(user);
-
-    for (let i = 0; i < user.length; i++) {
-
-        let message = `<h1>${user[i].mealName}</h1> 
-        <img src=${user[i].mealImg}> <p>${user[i].instructions}</p> <ul>${user[i].ingredients}</ul>`;
-    
-        let li = document.createElement('div');
-    
-        li.innerHTML = message;
-        
-        favourites.appendChild(li);
-        }
-
-    }
-
-if(localStorage.getItem("meals") != null){
-    displayMeals();
-}
-
-displayMeals();
