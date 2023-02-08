@@ -43,7 +43,6 @@ let surprise = document.querySelector("#surprise");
 let mealFavourite = document.getElementById("mealFavourite");
 let mealCard = document.querySelector("#meal-card");
 
-
 // Questions based of which cocktails/ food will be rendered
 let questions = [
   {
@@ -186,11 +185,9 @@ function chosenSelectedDrink(userDrinkChoice) {
     });
 }
 
-
 // API mealsDB
 
 // user input - API meal categories: vegan, vegeterian, meat[beef, chicken, lamb, pork, goat], seafood, surprise me: mix them all up? only mixed vegan, vegeterian and seafood as meats are a pain
-
 
 // Function to fetch meal data based on user input
 function fetchMealData(category) {
@@ -319,7 +316,7 @@ function renderMeal(mealDetails) {
    <ul>${ingredients}</ul>
 
    <p style='font-size: 15px;'class="card-text">Instructions: ${cardInstructions}</p>
-   <img  id = "mealFavourite"  src="./assets/favorites/add-to-favs.png" width="100px" height="100px" alt="pink-plus-icon">`;
+   <img  id = "mealFavourite"  src="./assets/favourites/add-to-favs.png" width="100px" height="100px" alt="pink-plus-icon">`;
 
   mealCard.innerHTML = htmlMealData;
   resultsContainer.classList.remove("hide");
@@ -423,23 +420,19 @@ function setCardHeight() {
   });
 }
 
-
-
-
 //This function checks whether the parentNode button is in either the drink or meal card and renders the function again to get a different meal/drink
 function shuffleItems(event) {
-  let selection = event.target.parentNode.id
+  let selection = event.target.parentNode.id;
   console.log(event.target.classList);
-  if(selection === 'drink-card') {
+  if (selection === "drink-card") {
     chosenSelectedDrink(userDrinkChoice);
-  } else if(event.classList === 'shuffle' && selection === 'meal-card') {
+  } else if (selection === "meal-card") {
     fetchMealData(userFoodChoice);
   }
 }
 //event listeners for when the user clicks on shuffle buttons inside either the drink or meal card.
 mealCard.addEventListener("click", () => shuffleItems(event));
 drinkShuffle.addEventListener("click", () => shuffleItems(event));
-
 
 //Individual add event listeners to add drink or meal to the users favourites list
 
@@ -487,4 +480,3 @@ drinkFavourite.addEventListener("click", function () {
 
 // // let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 // mealFavourite.addEventListener("click", favoriteMeal);
-
