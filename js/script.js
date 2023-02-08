@@ -410,9 +410,10 @@ function setCardHeight() {
 //This function checks whether the parentNode button is in either the drink or meal card and renders the function again to get a different meal/drink
 function shuffleItems(event) {
   let selection = event.target.parentNode.id
+  console.log(event.target.classList);
   if(selection === 'drink-card') {
     chosenSelectedDrink(userDrinkChoice);
-  } else if(selection === 'meal-card') {
+  } else if(event.classList === 'shuffle' && selection === 'meal-card') {
     fetchMealData(userFoodChoice);
   }
 }
@@ -437,6 +438,14 @@ drinkFavourite.addEventListener("click", function () {
   localStorage.setItem("Drinks", JSON.stringify(drinks));
   console.log(drinks);
 });
+
+// mealFavourite.addEventListener("click", function () {
+//   console.log('helo')
+// })
+
+//Individual add event listeners to add drink or meal to the users favourites list
+
+
 
 // function favoriteMeal() {
 //   favorites.push(newRecipe);
