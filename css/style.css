@@ -198,6 +198,11 @@ img {
   cursor: pointer;
 }
 
+#mealFavourite:hover,
+#drinkFavourite:hover {
+  gap: 32px;
+}
+
 .card-bottom {
   display: flex;
   justify-content: flex-start;

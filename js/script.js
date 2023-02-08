@@ -410,8 +410,8 @@ function shuffleItems(event) {
 }
 
 //event listeners for when the user clicks on shuffle buttons inside either the drink or meal card.
-mealCard.addEventListener("click", () => shuffleItems(event));
-drinkShuffle.addEventListener("click", () => shuffleItems(event));
+mealCard.addEventListener("click", (event) => shuffleItems(event));
+drinkShuffle.addEventListener("click", (event) => shuffleItems(event));
 
 //event listener to add the current drink to local storage.
 drinkFavourite.addEventListener("click", function () {
