@@ -11,6 +11,7 @@ let questionTitle = document.querySelector(".questionTitle");
 let options = document.querySelector("#drink-options");
 let resultsContainer = document.getElementById("results-container");
 let container = document.querySelector(".container");
+let drinkShuffle = document.querySelector(".drinkShuffle");
 
 // Drinks
 let userDrinkChoice;
@@ -27,8 +28,11 @@ let drinkCardName = document.getElementById("drinkCardName");
 let drinkCardImg = document.getElementById("drinkCardImg");
 let drinkCardInstructions = document.getElementById("drinkCardInstructions");
 let drinkCardUL = document.getElementById("drinkCardUL");
+let drinkFavourite = document.getElementById("drinkFavourite");
+let newDrinkIngStorage;
 
 // Meals
+let userFoodChoice;
 let foodBtns = document.querySelectorAll(".foods");
 let foodBtn = document.querySelector(".food-button");
 let vegan = document.querySelector("#vegan");
@@ -36,6 +40,9 @@ let vegeterian = document.querySelector("#vegetarian");
 let meat = document.querySelector("#meat");
 let seafood = document.querySelector("#seafood");
 let surprise = document.querySelector("#surprise");
+let mealFavourite = document.getElementById("mealFavourite");
+let mealCard = document.querySelector("#meal-card");
+
 
 // Questions based of which cocktails/ food will be rendered
 let questions = [
@@ -155,6 +162,7 @@ function chosenSelectedDrink(userDrinkChoice) {
             .join("");
           drinkCardUL.innerHTML = ingredients;
           drinkResults.classList.remove("hide");
+
           // Create a variable storing drink values
           let cardStorage = {
             cardName: randomDrink.strDrink,
@@ -178,12 +186,15 @@ function chosenSelectedDrink(userDrinkChoice) {
     });
 }
 
+
 // API mealsDB
 
 // user input - API meal categories: vegan, vegeterian, meat[beef, chicken, lamb, pork, goat], seafood, surprise me: mix them all up? only mixed vegan, vegeterian and seafood as meats are a pain
 
+
 // Function to fetch meal data based on user input
 function fetchMealData(category) {
+  userFoodChoice = category;
   // Hook Meat user input into all meat options on the API [beef, chicken, lamb, pork, goat]
   if (category === "Meat") {
     // meat options on categories API
@@ -290,9 +301,11 @@ function renderMeal(mealDetails) {
   }
 
   // Render on the page
+
   let mealCard = document.querySelector("#meal-card");
   var cardName = mealDetails[0].strMeal;
   let cardImg = mealDetails[0].strMealThumb;
+
   let mealIngr = stringIngr;
   let cardInstructions = mealDetails[0].strInstructions;
   let ingrQuant = stringMeasure;
@@ -304,8 +317,10 @@ function renderMeal(mealDetails) {
    <img class="card-img-top" id="mealCardImg" alt="image of a meal" src='${cardImg}'>
    <h2 style="padding-left: 20px; margin-bottom: 20px;">Ingredients:</h2>
    <ul>${ingredients}</ul>
+
    <p style='font-size: 15px;'class="card-text">Instructions: ${cardInstructions}</p>
    <img  id = "mealFavourite"  src="./assets/favorites/add-to-favs.png" width="100px" height="100px" alt="pink-plus-icon">`;
+
   mealCard.innerHTML = htmlMealData;
   resultsContainer.classList.remove("hide");
   resultsContainer.classList.add("results-container");
@@ -313,6 +328,7 @@ function renderMeal(mealDetails) {
   questionTitle.innerHTML = "";
   // Remove Buttons
   document.querySelector(".food-btns").innerHTML = "";
+
   let containerTextHtml = `<div class="save-quote"> <div style="text-align:center"> </div> <h2 class="message-quote">${message}</h2></div> `;
   container.innerHTML = containerTextHtml;
   setCardHeight();
@@ -324,6 +340,7 @@ function renderMeal(mealDetails) {
   };
 
   console.log(cardStorage);
+
   let meals = localStorage.getItem("Meals");
 
   if (meals) {
@@ -405,3 +422,60 @@ function setCardHeight() {
     drinkCard.style.height = cardHeight;
   });
 }
+
+
+
+
+//This function checks whether the parentNode button is in either the drink or meal card and renders the function again to get a different meal/drink
+function shuffleItems(event) {
+  let selection = event.target.parentNode.id
+  if(selection === 'drink-card') {
+    chosenSelectedDrink(userDrinkChoice);
+  } else if(selection === 'meal-card') {
+    fetchMealData(userFoodChoice);
+  }
+}
+//event listeners for when the user clicks on shuffle buttons inside either the drink or meal card.
+mealCard.addEventListener("click", () => shuffleItems(event));
+drinkShuffle.addEventListener("click", () => shuffleItems(event));
+
+
+//Individual add event listeners to add drink or meal to the users favourites list
+
+drinkFavourite.addEventListener("click", function () {
+  console.log(newDrinkIngStorage);
+  let drinks = localStorage.getItem("Drinks");
+
+  if (drinks) {
+    //This checks if users is true and not equal to null or undefined.
+    drinks = JSON.parse(drinks); //JSON.parse converts the string value into a Javascript object and is necessary because when items are added to localStorage they're stored as a string//
+    drinks.push(newDrinkIngStorage); //This adds the new user objects to the array of existing users.
+  } else {
+    drinks = [newDrinkIngStorage]; //If there are no existing items callled user, then we create a new array as the user item.
+  }
+  localStorage.setItem("Drinks", JSON.stringify(drinks));
+  console.log(drinks);
+});
+
+// function favoriteMeal() {
+//   favorites.push(newRecipe);
+//   localStorage.setItem("favorites", JSON.stringify(favorites));
+
+//   location.href = "favorites.html";
+// }
+
+// mealName.addEventListener("click", favoriteMeal);
+
+// let mealFavourite = getElementById("addFavourite")
+
+// function favoriteMeal(htmlMealData) {
+//   let newRecipe = htmlMealData;
+//   favorites.push(newRecipe);
+//   localStorage.setItem("favorites", JSON.stringify(favorites));
+
+//   // location.href = "./favorites.html";
+// }
+
+// // let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+// mealFavourite.addEventListener("click", favoriteMeal);
+
