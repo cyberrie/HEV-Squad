@@ -474,26 +474,3 @@ document.addEventListener("click", function (e) {
     console.log('+++++++++');
   }
 });
-
-
-// function favoriteMeal() {
-//   favorites.push(newRecipe);
-//   localStorage.setItem("favorites", JSON.stringify(favorites));
-
-//   location.href = "favorites.html";
-// }
-
-// mealName.addEventListener("click", favoriteMeal);
-
-// let mealFavourite = getElementById("addFavourite")
-
-// function favoriteMeal(htmlMealData) {
-//   let newRecipe = htmlMealData;
-//   favorites.push(newRecipe);
-//   localStorage.setItem("favorites", JSON.stringify(favorites));
-
-//   // location.href = "./favorites.html";
-// }
-
-// // let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-// mealFavourite.addEventListener("click", favoriteMeal);
