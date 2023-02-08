@@ -40,6 +40,10 @@ a {
   margin: 10px 0 0 10px;
 }
 
+.star {
+  margin: 10px 10px 0 0;
+}
+
 .star:hover,
 .home:hover {
   border-radius: 50%;
@@ -57,21 +61,9 @@ a {
   margin-top: 60px;
 }
 
-.save-quote {
+.star-home {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 36px;
-}
-
-.message-quote {
-  font-family: "Dancing Script";
-  font-size: 32px;
-}
-
-.hide {
-  display: none;
-  overflow: hidden;
+  justify-content: space-between;
 }
 
 /* questions */
@@ -191,7 +183,8 @@ img {
 
 #mealFavourite:hover,
 #drinkFavourite:hover,
-.mealShuffle:hover {
+.mealShuffle:hover,
+.drinkShuffle:hover {
   cursor: pointer;
 }
 
@@ -219,10 +212,28 @@ p {
   margin-bottom: 28px !important;
 }
 
+/* quote */
+
+.save-quote {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+}
+
+.message-quote {
+  font-family: "Dancing Script";
+  font-size: 32px;
+}
+
+.hide {
+  display: none;
+  overflow: hidden;
+}
+
 /* Local storage */
 
 .results-wrap {
-
   margin-top: 64px;
   display: flex;
   justify-content: center;
@@ -241,4 +252,3 @@ p {
   margin-bottom: 30px;
   cursor: pointer;
 }
-
