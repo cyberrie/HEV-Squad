@@ -44,7 +44,7 @@ One sip and bite at a time... 🍸 🤤
 
 - Must be deployed to GitHub Pages
 
-- Must be interactive (i.e. acceot and respond to user input)
+- Must be interactive (i.e. accept and respond to user input)
 
 ## Application Demo
 
@@ -54,7 +54,7 @@ The following animation demonstrates the application functionality:
 
 ## Links
 
-- You will be able to acces the app URL if you navigate into Settings → Pages inside this repository
+- You will be able to access the app URL if you navigate into Settings → Pages inside this repository
 
 - Or, click on this link: [Mood Mix]()
 
@@ -70,7 +70,9 @@ The following animation demonstrates the application functionality:
 
 - Server APIs
 
-.........we can add stuff in here
+- Local Storage
+
+- Loops and iterations
 
 ## What we learned
 
@@ -78,13 +80,27 @@ The following animation demonstrates the application functionality:
 
 ## Directions for future development
 
-....... if something stays in the pipeline from icebox we can put it here
+Things for the future include:
+
+- Adding sound effects for improved interactivity.
+
+- Using [Geoapify](https://www.geoapify.com/) to provide the user with a map showing their nearest restaurants based on their selected meal and drinks.
+
+- Additional drink options such as soft drinks, water and fruit juices.
+
+- The option to choose either just a cocktail or drink.
 
 ## Useful Resources
 
+- [JavaScript] (https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
 - [jQuery Documentation](https://api.jquery.com/)
 
-.... left the above as example but we can put everything that we used throughout
+- [Bootstrap Documentation](https://getbootstrap.com/docs/5.0)
+
+- [TheMealDB](https://www.themealdb.com/api.php)
+
+- [TheCocktailDB](https://www.thecocktaildb.com/)
 
 ## Authors
 

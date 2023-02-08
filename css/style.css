@@ -234,6 +234,7 @@ p {
 /* Local storage */
 
 .results-wrap {
+
   margin-top: 64px;
   display: flex;
   justify-content: center;
@@ -252,3 +253,4 @@ p {
   margin-bottom: 30px;
   cursor: pointer;
 }
+
