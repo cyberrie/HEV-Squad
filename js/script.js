@@ -304,8 +304,10 @@ function renderMeal(mealDetails) {
    <ul>${ingredients}</ul>
 
    <p style='font-size: 15px;'class="card-text">Instructions: ${cardInstructions}</p>
-   <button class="mealShuffle">Shuffle</button>
-   <img  id = "mealFavourite"  src="./assets/favourites/add-to-favs.png" width="100px" height="100px" alt="pink-plus-icon">`;
+   <div class='card-bottom'>
+   <img  id = "mealFavourite"  src="./assets/favourites/add-to-favs.png" width="100px" height="100px" alt="pink-plus-icon">
+   <img  src="./assets/favourites/shuffle.png" class="mealShuffle"></img>
+   </div>`;
 
   mealCard.innerHTML = htmlMealData;
   resultsContainer.classList.remove("hide");

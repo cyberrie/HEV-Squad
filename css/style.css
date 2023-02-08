@@ -28,11 +28,13 @@ a {
   text-decoration: none;
 }
 
-/* favs button */
+/* buttons on different pages */
 
 .star,
 .home,
-.clear {
+.clear,
+.mealShuffle,
+.drinkShuffle {
   height: 100px !important;
   width: 100px !important;
   margin: 10px 0 0 10px;
@@ -45,6 +47,7 @@ a {
 }
 
 /* landing page container */
+
 .container,
 .results-quote {
   display: flex;
@@ -118,7 +121,7 @@ button:active {
   height: 190px;
 }
 
-/*testing drink buttons with images*/
+/* drink/ food options with images*/
 
 .wrap-btns {
   gap: 32px;
@@ -187,8 +190,15 @@ img {
 }
 
 #mealFavourite:hover,
-#drinkFavourite:hover {
+#drinkFavourite:hover,
+.mealShuffle:hover {
   cursor: pointer;
+}
+
+.card-bottom {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
 }
 
 ul {
