@@ -29,8 +29,8 @@ let drinkCardImg = document.getElementById("drinkCardImg");
 let drinkCardInstructions = document.getElementById("drinkCardInstructions");
 let drinkCardUL = document.getElementById("drinkCardUL");
 let drinkFavourite = document.getElementById("drinkFavourite");
-let newDrinkIngStorage;
-
+let cardDrinkStorage;
+let cardMealStorage;
 // Meals
 let userFoodChoice;
 let foodBtns = document.querySelectorAll(".foods");
@@ -42,7 +42,6 @@ let seafood = document.querySelector("#seafood");
 let surprise = document.querySelector("#surprise");
 let mealFavourite = document.getElementById("mealFavourite");
 let mealCard = document.querySelector("#meal-card");
-
 
 // Questions based of which cocktails/ food will be rendered
 let questions = [
@@ -196,11 +195,9 @@ function chosenSelectedDrink(userDrinkChoice) {
     });
 }
 
-
 // API mealsDB
 
 // user input - API meal categories: vegan, vegeterian, meat[beef, chicken, lamb, pork, goat], seafood, surprise me: mix them all up? only mixed vegan, vegeterian and seafood as meats are a pain
-
 
 // Function to fetch meal data based on user input
 function fetchMealData(category) {
@@ -324,12 +321,12 @@ function renderMeal(mealDetails) {
     .join("");
 
   let htmlMealData = `<h1 class="card-title">${cardName}</h1>
-   <img class="card-img-top" id="mealCardImg" alt="image of a meal" src='${cardImg}'>
+   <img class="card-img-top mealCardImg" id="cardImg" alt="image of a meal" src='${cardImg}'>
    <h2 style="padding-left: 20px; margin-bottom: 20px;">Ingredients:</h2>
    <ul>${ingredients}</ul>
 
    <p style='font-size: 15px;'class="card-text">Instructions: ${cardInstructions}</p>
-   <img id = "mealFavourite"  src="./assets/favorites/add-to-favs.png" width="100px" height="100px" alt="pink-plus-icon">`;
+   <img  id = "mealFavourite"  src="./assets/favorites/add-to-favs.png" width="100px" height="100px" alt="pink-plus-icon">`;
 
   mealCard.innerHTML = htmlMealData;
   resultsContainer.classList.remove("hide");
@@ -342,13 +339,14 @@ function renderMeal(mealDetails) {
   let containerTextHtml = `<div class="save-quote"> <div style="text-align:center"> </div> <h2 class="message-quote">${message}</h2></div> `;
   container.innerHTML = containerTextHtml;
   setCardHeight();
-  let cardStorage = {
+  cardMealStorage = {
     cardName: mealDetails[0].strMeal,
     cardImg: mealDetails[0].strMealThumb,
     ingredients,
     cardInstructions: mealDetails[0].strInstructions,
   };
 
+  // console.log(cardStorage);
   // console.log(cardStorage);
 
   let meals = JSON.parse(localStorage.getItem("Meals"));
@@ -433,9 +431,6 @@ function setCardHeight() {
   });
 }
 
-
-
-
 //This function checks whether the parentNode button is in either the drink or meal card and renders the function again to get a different meal/drink
 function shuffleItems(event) {
   let selection = event.target.parentNode.id
@@ -445,6 +440,7 @@ function shuffleItems(event) {
     fetchMealData(userFoodChoice);
   }
 }
+
 //event listeners for when the user clicks on shuffle buttons inside either the drink or meal card.
 mealCard.addEventListener("click", () => shuffleItems(event));
 drinkShuffle.addEventListener("click", () => shuffleItems(event));
@@ -501,4 +497,3 @@ document.addEventListener("click", function (e) {
 
 // // let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 // mealFavourite.addEventListener("click", favoriteMeal);
-
