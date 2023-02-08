@@ -311,7 +311,7 @@ function renderMeal(mealDetails) {
     .join("");
 
   let htmlMealData = `<h1 class="card-title">${cardName}</h1>
-   <img class="card-img-top" id="mealCardImg" alt="image of a meal" src='${cardImg}'>
+   <img class="card-img-top mealCardImg" id="cardImg" alt="image of a meal" src='${cardImg}'>
    <h2 style="padding-left: 20px; margin-bottom: 20px;">Ingredients:</h2>
    <ul>${ingredients}</ul>
 
