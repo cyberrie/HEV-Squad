@@ -48,7 +48,7 @@ a {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 60px;
 }
 
 .save-quote {
@@ -71,7 +71,8 @@ a {
 /* questions */
 
 .questionTitle,
-.mood-question {
+.mood-question,
+#favs-heading {
   font-size: 10rem;
   margin: 0 auto;
   text-align: center;
@@ -208,8 +209,14 @@ p {
 /* Local storage */
 
 .results-wrap {
+  margin-top: 64px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 32px;
+}
+
+#card-one,
+#card-two {
+  background-color: #bebdbd1f;
 }
