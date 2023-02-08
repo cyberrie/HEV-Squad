@@ -304,9 +304,9 @@ function renderMeal(mealDetails) {
    <ul>${ingredients}</ul>
 
    <p style='font-size: 15px;'class="card-text">Instructions: ${cardInstructions}</p>
-   <div class='card-bottom'><button>
+   <div class='card-bottom'><button id='no-hover' class="card-btn-style">
    <img  id = "mealFavourite"  src="./assets/favourites/add-to-favs.png" width="100px" height="100px" alt="pink-plus-icon"></button>
-   <button><img  src="./assets/favourites/shuffle.png" class="mealShuffle"></img></button>
+   <button id='no-hover' class="card-btn-style"><img  src="./assets/favourites/shuffle.png" class="mealShuffle"></img></button>
    </div>`;
 
   mealCard.innerHTML = htmlMealData;
@@ -400,8 +400,7 @@ function setCardHeight() {
 
 //This function checks whether the parentNode button is in either the drink or meal card and renders the function again to get a different meal/drink
 function shuffleItems(event) {
-
-  if (event.target.classList[0] === 'drinkShuffle') {
+  if (event.target.classList[0] === "drinkShuffle") {
     console.log("hi");
     chosenSelectedDrink(userDrinkChoice);
   } else if (event.target.classList[0] === "mealShuffle") {
