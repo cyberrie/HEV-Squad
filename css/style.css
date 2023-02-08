@@ -101,6 +101,10 @@ button {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
+#drinkFavourite:hover, #mealFavourite:hover{
+  filter: drop-shadow(2px 3px 4px);
+}
+
 button:hover {
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
 }

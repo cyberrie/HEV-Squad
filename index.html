@@ -1,203 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <title>MoodMix: A fusion of flavors and inspiration</title>
 
-    <!-- Bootsrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
-    <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./css/style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <body>
+  <title>MoodMix: A fusion of flavors and inspiration</title>
 
-    <!-- favourites button -->
+  <!-- Bootsrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+
+  <!-- favourites button -->
 
   <a href="favourites.html">
-      <img
-        src="./assets/favorites/star.png"
-        class="img-fluid star"
-        alt="A star icon"
-      />
-   </a>  
+    <img src="./assets/favorites/star.png" class="img-fluid star" alt="A star icon" />
+  </a>
 
-    <!--Landing page, user selection-->
+  <!--Landing page, user selection-->
 
-    <div class="container">
-      <div class="container" id="landingPageIcons">
-        <div class="emoji-wrap">
-          <h1 class="text-center mood-question">How are you feeling today?</h1>
-          <div class="wrap-btns options">
-              <button type="button" class="btn">
-                <img
-                  id="selectAngry"
-                  src="./assets/moods/angry2.png"
-                  class="img-fluid"
-                  alt="An angry emoji"
-                />
-              </button>
-              <button type="button" class="btn">
-                <img
-                  id="selectHappy"
-                  src="./assets/moods/happy2.png"
-                  class="img-fluid"
-                  alt="A happy emoji"
-                />
-              </button>
-              <button type="button" class="btn">
-                <img
-                  id="selectSad"
-                  src="./assets/moods/sad2.png"
-                  class="img-fluid"
-                  alt="A sad emoji"
-                />
-              </button>
-              <button type="button" class="btn">
-                <img
-                  id="selectSalsa"
-                  src="./assets/moods/salsa2.png"
-                  class="img-fluid"
-                  alt="a Salsa emoji"
-                />
-              </button>
-            </div>
-          </div>
+  <div class="container">
+    <div class="container" id="landingPageIcons">
+      <div class="emoji-wrap">
+        <h1 class="text-center mood-question">How are you feeling today?</h1>
+        <div class="wrap-btns options">
+          <button type="button" class="btn">
+            <img id="selectAngry" src="./assets/moods/angry2.png" class="img-fluid" alt="An angry emoji" />
+          </button>
+          <button type="button" class="btn">
+            <img id="selectHappy" src="./assets/moods/happy2.png" class="img-fluid" alt="A happy emoji" />
+          </button>
+          <button type="button" class="btn">
+            <img id="selectSad" src="./assets/moods/sad2.png" class="img-fluid" alt="A sad emoji" />
+          </button>
+          <button type="button" class="btn">
+            <img id="selectSalsa" src="./assets/moods/salsa2.png" class="img-fluid" alt="a Salsa emoji" />
+          </button>
         </div>
       </div>
     </div>
+  </div>
+  </div>
 
-    <h1 class="questionTitle"></h1>
-    <div class="drink-btns hide">
-      <button class="drinks drink-button" id="shake">
-        <img
-          src="assets/drinks/shake2.png"
-          alt="a picture of a milkshake"
-          id="shakeIcon"
-        />Shake
-      </button>
+  <h1 class="questionTitle"></h1>
+  <div class="drink-btns hide">
+    <button class="drinks drink-button" id="shake">
+      <img src="assets/drinks/shake2.png" alt="a picture of a milkshake" id="shakeIcon" />Shake
+    </button>
 
-      <button class="drinks drink-button" id="cocktail">
-        <img
-          src="assets/drinks/cocktail2.png"
-          alt="a picture of a cocktail"
-          id="cocktailIcon"
-        />Cocktail
-      </button>
-      <button class="drinks drink-button" id="soft-drink">
-        <img
-          src="assets/drinks/softdrink2.png"
-          alt="a picture of a soft drink"
-          id="softDrinkIcon"
-        />Soft Drink
-      </button>
-      <button class="drinks drink-button" id="coffeeTea">
-        <img
-          src="assets/drinks/coffee2.png"
-          alt="a picture of a hot drink"
-          id="coffeeTeaIcon"
-        />Coffee / Tea
-      </button>
-      <button class="drinks drink-button" id="surprise-me">
-        <img
-          src="assets/meals/surprise.png"
-          alt="a picture of a drink"
-          id="supriseDrinkIcon"
-        />Surprise Me
-      </button>
+    <button class="drinks drink-button" id="cocktail">
+      <img src="assets/drinks/cocktail2.png" alt="a picture of a cocktail" id="cocktailIcon" />Cocktail
+    </button>
+    <button class="drinks drink-button" id="soft-drink">
+      <img src="assets/drinks/softdrink2.png" alt="a picture of a soft drink" id="softDrinkIcon" />Soft Drink
+    </button>
+    <button class="drinks drink-button" id="coffeeTea">
+      <img src="assets/drinks/coffee2.png" alt="a picture of a hot drink" id="coffeeTeaIcon" />Coffee / Tea
+    </button>
+    <button class="drinks drink-button" id="surprise-me">
+      <img src="assets/meals/surprise.png" alt="a picture of a drink" id="supriseDrinkIcon" />Surprise Me
+    </button>
+  </div>
+
+  <div class="food-btns hide">
+    <button class="foods food-button" id="vegan">
+      <img class="meal-icon" src="./assets/meals/vegan.png" alt="vegan icon" />
+      Vegan
+    </button>
+    <button class="foods food-button" id="vegetarian">
+      <img class="meal-icon" src="./assets/meals/vegetarian.png" alt="vegetarian icon" />Vegetarian
+    </button>
+    <button class="foods food-button" id="meat">
+      <img class="meal-icon" src="./assets/meals/meat.png" alt="meat icon" />Meat
+    </button>
+    <button class="foods food-button" id="seafood">
+      <img class="meal-icon" src="./assets/meals/seafood.png" alt="seafood icon" />Seafood
+    </button>
+    <button class="foods food-button" id="surprise">
+      <img class="meal-icon" src="./assets/meals/surprise.png" alt="surprise-me icon" />Surprise Me
+    </button>
+  </div>
+
+  <div class="hide" id="results-container">
+    <div id="drink-card" class="card" style="width: 60rem">
+      <h1 class="card-title" id="cardName"></h1>
+      <img src="" class="card-img-top" id="cardImg" alt="a picture of a drink" />
+      <h2 style="padding-left: 20px; margin-bottom: 20px;">Ingredients:</h2>
+      <ul id="drinkCardUL" style="list-style-type: none"></ul>
+      <p class="card-text" id="cardInstructions"></p>
+      <button class="drinkShuffle justify-self-center align-self-center; mx-auto my-4">Shuffle</button>
+      <img src="./assets/favorites/add-to-favs.png" style="display: block; width: 100px; height: 100px;
+    margin-top: auto;" width="100px" height="100px" alt="pink-plus-icon" id="drinkFavourite">
     </div>
+    <div id="meal-card" class="card" style="width: 60rem"></div>
+  </div>
+  
+  <!-- Bootsrap jQuery -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+  <script src="./js/script.js"></script>
+</body>
 
-    <div class="food-btns hide">
-      <button class="foods food-button" id="vegan">
-        <img
-          class="meal-icon"
-          src="./assets/meals/vegan.png"
-          alt="vegan icon"
-        />
-        Vegan
-      </button>
-      <button class="foods food-button" id="vegetarian">
-        <img
-          class="meal-icon"
-          src="./assets/meals/vegetarian.png"
-          alt="vegetarian icon"
-        />Vegetarian
-      </button>
-      <button class="foods food-button" id="meat">
-        <img
-          class="meal-icon"
-          src="./assets/meals/meat.png"
-          alt="meat icon"
-        />Meat
-      </button>
-      <button class="foods food-button" id="seafood">
-        <img
-          class="meal-icon"
-          src="./assets/meals/seafood.png"
-          alt="seafood icon"
-        />Seafood
-      </button>
-      <button class="foods food-button" id="surprise">
-        <img
-          class="meal-icon"
-          src="./assets/meals/surprise.png"
-          alt="surprise-me icon"
-        />Surprise Me
-      </button>
-    </div>
-
-    <div class="hide" id="results-container">
-      <div id="drink-card"  class="card" style="width: 60rem"> 
-          <h1 class="card-title" id="cardName"></h1>
-          <img src="" class="card-img-top" id="cardImg" alt="a picture of a drink"/>
-          <h2 style="padding-left: 20px; margin-bottom: 20px;">Ingredients:</h2>
-          <ul id="drinkCardUL" style="list-style-type: none"></ul>          
-          <p class="card-text" id="cardInstructions"></p> 
-                    <button class="drinkShuffle">Shuffle</button>
-          <div id="drinkFavourite"><img src="./assets/favorites/add-to-favs.png
-            " width="100px" height="100px" alt="pink-plus-icon"></div>
-      </div>
-      <div id="meal-card" class="card" style="width: 60rem"></div>
-    </div>
-
-
-    <!-- Bootsrap jQuery -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-      crossorigin="anonymous"
-    ></script>
-    <script src="./js/script.js"></script>
-  </body>
 </html>

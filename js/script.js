@@ -100,7 +100,7 @@ drinkBtns.forEach(function (drinkBtn) {
     document.querySelector(".food-btns").classList.remove("hide");
     // add drinks options class
     document.querySelector(".food-btns").classList.add("options");
-    console.log(selectedDrink);
+    // console.log(selectedDrink);
 
     userDrinkChoice = selectedDrink;
 
@@ -121,7 +121,7 @@ function chosenSelectedDrink(userDrinkChoice) {
       userDrinkChoice = randomValue.textContent.trim();
     }
   }
-  console.log(userDrinkChoice);
+  // console.log(userDrinkChoice);
   let queryURL = `https://thecocktaildb.com/api/json/v1/1/filter.php?c=${userDrinkChoice}`;
   fetch(queryURL)
     .then((response) => response.json())
@@ -138,6 +138,7 @@ function chosenSelectedDrink(userDrinkChoice) {
         .then((response) => response.json())
         .then((response) => {
           let drinkDetails = response.drinks;
+
           //This loops through the ingredients and displays the value if truthy.
           let drinkIngredientArray = []; //Create an empty array to store the truthy ingredients.
           let drinkMeasureArray = [];
@@ -165,23 +166,32 @@ function chosenSelectedDrink(userDrinkChoice) {
 
           // Create a variable storing drink values
           let cardStorage = {
+            id: randomDrink.idDrink,
             cardName: randomDrink.strDrink,
             cardImg: drinkDetails[0].strDrinkThumb,
             ingredients,
             cardInstructions: drinkDetails[0].strInstructions,
           };
 
-          let drinks = localStorage.getItem("Drinks");
+
+          //IK parse right away
+          let drinks = JSON.parse(localStorage.getItem("Drinks"));
+          //IK check the array if we have such drink already 
+          let obj = drinks && drinks.find(d => d.cardName === randomDrink.strDrink);
 
           if (drinks) {
             //This checks if users is true and not equal to null or undefined.
-            drinks = JSON.parse(drinks); //JSON.parse converts the string value into a Javascript object and is necessary because when items are added to localStorage they're stored as a string//
-            drinks.push(cardStorage); //This adds the new user objects to the array of existing users.
+            // drinks = JSON.parse(drinks); //JSON.parse converts the string value into a Javascript object and is necessary because when items are added to localStorage they're stored as a string//\
+
+            //IK check if we already have the drink, if yes, return original], if not, push
+            if (drinks.indexOf(obj) === -1) {
+              drinks.push(cardStorage); //This adds the new user objects to the array of existing users.
+            }
           } else {
+            console.log('already there');
             drinks = [cardStorage]; //If there are no existing items callled user, then we create a new array as the user item.
           }
           localStorage.setItem("Drinks", JSON.stringify(drinks));
-          console.log(drinks);
         });
     });
 }
@@ -213,11 +223,11 @@ function fetchMealData(category) {
     fetch(queryURL)
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         let meals = response.meals;
         let randomIndex = Math.floor(Math.random() * meals.length);
         let randomMeal = meals[randomIndex];
-        console.log(randomMeal);
+        // console.log(randomMeal);
 
         let mealId = randomMeal.idMeal;
         return fetch(
@@ -241,9 +251,9 @@ function fetchMealData(category) {
       // This is the returned selected meal data (array of objects), function to randomly select one meal
       .then((response) => {
         let index = Math.floor(Math.random() * response.meals.length);
-        console.log(index);
+        // console.log(index);
         let randomMeal = response.meals[index];
-        console.log(randomMeal);
+        // console.log(randomMeal);
 
         let mealId = randomMeal.idMeal;
         return fetch(
@@ -294,7 +304,7 @@ function renderMeal(mealDetails) {
     let quantity = mealDetails[0][`strMeasure${i}`];
 
     if (ingredient && quantity) {
-      console.log("ingredient:", ingredient, "quantity:", quantity); //this renders each ingredient if it exists.
+      // console.log("ingredient:", ingredient, "quantity:", quantity); //this renders each ingredient if it exists.
       stringIngr.push(ingredient); //this cycles through each truthy ingredient and pushes it into the new array.
       stringMeasure.push(quantity);
     }
@@ -310,7 +320,7 @@ function renderMeal(mealDetails) {
   let cardInstructions = mealDetails[0].strInstructions;
   let ingrQuant = stringMeasure;
   let ingredients = mealIngr
-    .map((ingredient, index) => `<li>${ingredient}, ${ingrQuant[index]}</li>`)
+    .map((ingredient, index) => `<li">${ingredient}, ${ingrQuant[index]}</li>`)
     .join("");
 
   let htmlMealData = `<h1 class="card-title">${cardName}</h1>
@@ -319,7 +329,7 @@ function renderMeal(mealDetails) {
    <ul>${ingredients}</ul>
 
    <p style='font-size: 15px;'class="card-text">Instructions: ${cardInstructions}</p>
-   <img  id = "mealFavourite"  src="./assets/favorites/add-to-favs.png" width="100px" height="100px" alt="pink-plus-icon">`;
+   <img id = "mealFavourite"  src="./assets/favorites/add-to-favs.png" width="100px" height="100px" alt="pink-plus-icon">`;
 
   mealCard.innerHTML = htmlMealData;
   resultsContainer.classList.remove("hide");
@@ -339,18 +349,18 @@ function renderMeal(mealDetails) {
     cardInstructions: mealDetails[0].strInstructions,
   };
 
-  console.log(cardStorage);
+  // console.log(cardStorage);
 
-  let meals = localStorage.getItem("Meals");
+  let meals = JSON.parse(localStorage.getItem("Meals"));
 
   if (meals) {
-    meals = JSON.parse(meals);
+    // meals = JSON.parse(meals);
     meals.push(cardStorage);
   } else {
     meals = [cardStorage];
   }
   localStorage.setItem("Meals", JSON.stringify(meals));
-  console.log(meals);
+  // console.log(meals);
 }
 
 // Quotes
@@ -394,7 +404,7 @@ let message;
 landingPage.addEventListener("click", function (event) {
   let randomIndex = Math.floor(Math.random() * 2);
   let selectedQuote = event.target.id;
-  console.log(selectedQuote);
+  // console.log(selectedQuote);
   if (selectedQuote === "selectAngry") {
     message = quotes.angry[randomIndex];
   } else if (selectedQuote === "selectHappy") {
@@ -412,12 +422,12 @@ function setCardHeight() {
   const drinkCard = document.getElementById("drink-card");
   const mealCard = document.getElementById("meal-card");
 
-  console.log(`mealCard height: ${mealCard.offsetHeight}`);
+  // console.log(`mealCard height: ${mealCard.offsetHeight}`);
 
   window.requestAnimationFrame(() => {
     const cardHeight = mealCard.offsetHeight;
 
-    console.log(`Setting drinkCard height to: ${cardHeight}`);
+    // console.log(`Setting drinkCard height to: ${cardHeight}`);
 
     drinkCard.style.height = cardHeight;
   });
@@ -429,9 +439,9 @@ function setCardHeight() {
 //This function checks whether the parentNode button is in either the drink or meal card and renders the function again to get a different meal/drink
 function shuffleItems(event) {
   let selection = event.target.parentNode.id
-  if(selection === 'drink-card') {
+  if (selection === 'drink-card') {
     chosenSelectedDrink(userDrinkChoice);
-  } else if(selection === 'meal-card') {
+  } else if (selection === 'meal-card') {
     fetchMealData(userFoodChoice);
   }
 }
@@ -442,20 +452,33 @@ drinkShuffle.addEventListener("click", () => shuffleItems(event));
 
 //Individual add event listeners to add drink or meal to the users favourites list
 
-drinkFavourite.addEventListener("click", function () {
-  console.log(newDrinkIngStorage);
-  let drinks = localStorage.getItem("Drinks");
 
-  if (drinks) {
-    //This checks if users is true and not equal to null or undefined.
-    drinks = JSON.parse(drinks); //JSON.parse converts the string value into a Javascript object and is necessary because when items are added to localStorage they're stored as a string//
-    drinks.push(newDrinkIngStorage); //This adds the new user objects to the array of existing users.
-  } else {
-    drinks = [newDrinkIngStorage]; //If there are no existing items callled user, then we create a new array as the user item.
+//IK click on drink fav btn
+drinkFavourite.addEventListener("click", function (e) {
+  console.log('============');
+  const userFav = JSON.parse(localStorage.getItem('userFav')) || [];
+  const drinkNm = e.target.parentNode.children[0].innerHTML;
+  if (userFav.indexOf(drinkNm) === -1) {
+    userFav.push(drinkNm)
   }
-  localStorage.setItem("Drinks", JSON.stringify(drinks));
-  console.log(drinks);
+  console.log(drinkNm);
+  localStorage.setItem('userFav', JSON.stringify(userFav))
+  console.log('============');
 });
+document.addEventListener("click", function (e) {
+  if (e.target && e.target.matches('#mealFavourite')) {
+    console.log('+++++++++++');
+    const userFav = JSON.parse(localStorage.getItem('userFav')) || [];
+    const mealNm = e.target.parentNode.children[0].innerHTML;
+    if (userFav.indexOf(mealNm) === -1) {
+      userFav.push(mealNm)
+    }
+    console.log(mealNm);
+    localStorage.setItem('userFav', JSON.stringify(userFav))
+    console.log('+++++++++');
+  }
+});
+
 
 // function favoriteMeal() {
 //   favorites.push(newRecipe);
