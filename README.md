@@ -44,7 +44,7 @@ One sip and bite at a time... 🍸 🤤
 
 - Must be deployed to GitHub Pages
 
-- Must be interactive (i.e. acceot and respond to user input)
+- Must be interactive (i.e. accept and respond to user input)
 
 ## Application Demo
 
@@ -54,7 +54,7 @@ The following animation demonstrates the application functionality:
 
 ## Links
 
-- You will be able to acces the app URL if you navigate into Settings → Pages inside this repository
+- You will be able to access the app URL if you navigate into Settings → Pages inside this repository
 
 - Or, click on this link: [Mood Mix]()
 
