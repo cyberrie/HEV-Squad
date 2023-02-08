@@ -50,10 +50,6 @@ a {
   cursor: pointer !important;
 }
 
-#no-hover:hover {
-  box-shadow: initial;
-}
-
 .star {
   margin: 10px 10px 0 0;
 }

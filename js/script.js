@@ -304,9 +304,9 @@ function renderMeal(mealDetails) {
    <ul>${ingredients}</ul>
 
    <p style='font-size: 15px;'class="card-text">Instructions: ${cardInstructions}</p>
-   <div class='card-bottom'><button id='no-hover' class="card-btn-style">
+   <div class='card-bottom'><button class="card-btn-style">
    <img  id = "mealFavourite"  src="./assets/favourites/add-to-favs.png" width="100px" height="100px" alt="pink-plus-icon"></button>
-   <button id='no-hover' class="card-btn-style"><img  src="./assets/favourites/shuffle.png" class="mealShuffle"></img></button>
+   <button class="card-btn-style"><img  src="./assets/favourites/shuffle.png" class="mealShuffle"></img></button>
    </div>`;
 
   mealCard.innerHTML = htmlMealData;
@@ -445,31 +445,3 @@ mealCard.addEventListener("click", function (event) {
     console.log(meals);
   }
 });
-
-// mealFavourite.addEventListener("click", function () {
-//   console.log('helo')
-// })
-
-//Individual add event listeners to add drink or meal to the users favourites list
-
-// function favoriteMeal() {
-//   favorites.push(newRecipe);
-//   localStorage.setItem("favorites", JSON.stringify(favorites));
-
-//   location.href = "favorites.html";
-// }
-
-// mealName.addEventListener("click", favoriteMeal);
-
-// let mealFavourite = getElementById("addFavourite")
-
-// function favoriteMeal(htmlMealData) {
-//   let newRecipe = htmlMealData;
-//   favorites.push(newRecipe);
-//   localStorage.setItem("favorites", JSON.stringify(favorites));
-
-//   // location.href = "./favorites.html";
-// }
-
-// // let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-// mealFavourite.addEventListener("click", favoriteMeal);
