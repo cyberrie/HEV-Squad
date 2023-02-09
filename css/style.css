@@ -50,10 +50,6 @@ a {
   cursor: pointer !important;
 }
 
-#no-hover:hover {
-  box-shadow: initial;
-}
-
 .star {
   margin: 10px 10px 0 0;
 }
@@ -200,6 +196,11 @@ img {
 .mealShuffle:hover,
 .drinkShuffle:hover {
   cursor: pointer;
+}
+
+#mealFavourite:hover,
+#drinkFavourite:hover {
+  gap: 32px;
 }
 
 .card-bottom {
