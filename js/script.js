@@ -12,6 +12,8 @@ let options = document.querySelector("#drink-options");
 let resultsContainer = document.getElementById("results-container");
 let container = document.querySelector(".container");
 let drinkShuffle = document.querySelector(".drinkShuffle");
+let drinkShuffleBtn = document.getElementById('drinkShuffleBtn');
+let mealShuffleBtn = document.getElementById('mealShuffleBtn');
 
 // Drinks
 let userDrinkChoice;
@@ -99,7 +101,6 @@ drinkBtns.forEach(function (drinkBtn) {
     document.querySelector(".food-btns").classList.remove("hide");
     // add drinks options class
     document.querySelector(".food-btns").classList.add("options");
-    console.log(selectedDrink);
 
     userDrinkChoice = selectedDrink;
 
@@ -111,7 +112,6 @@ drinkBtns.forEach(function (drinkBtn) {
 
 // 'Cocktail', 'Soft Drink', 'cofee/tea', 'Other / Unknown', 'Shake', 'Punch / Party Drink', 'Beer', 'Cocoa'.
 function chosenSelectedDrink(userDrinkChoice) {
-  console.log(userDrinkChoice);
 
   if (userDrinkChoice === "Surprise Me") {
     for (let i = 0; i < 1; i++) {
@@ -120,7 +120,6 @@ function chosenSelectedDrink(userDrinkChoice) {
       userDrinkChoice = randomValue.textContent.trim();
     }
   }
-  console.log(userDrinkChoice);
   let queryURL = `https://thecocktaildb.com/api/json/v1/1/filter.php?c=${userDrinkChoice}`;
   fetch(queryURL)
     .then((response) => response.json())
@@ -279,7 +278,6 @@ function renderMeal(mealDetails) {
     let quantity = mealDetails[0][`strMeasure${i}`];
 
     if (ingredient && quantity) {
-      console.log("ingredient:", ingredient, "quantity:", quantity); //this renders each ingredient if it exists.
       stringIngr.push(ingredient); //this cycles through each truthy ingredient and pushes it into the new array.
       stringMeasure.push(quantity);
     }
@@ -306,7 +304,7 @@ function renderMeal(mealDetails) {
    <p style='font-size: 15px;'class="card-text">Instructions: ${cardInstructions}</p>
    <div class='card-bottom'><button class="card-btn-style">
    <img  id = "mealFavourite"  src="./assets/favourites/add-to-favs.png" width="100px" height="100px" alt="pink-plus-icon"></button>
-   <button class="card-btn-style"><img  src="./assets/favourites/shuffle.png" class="mealShuffle"></img></button>
+   <button id="mealShuffleBtn" class="card-btn-style"><img  src="./assets/favourites/shuffle.png" class="mealShuffle"></img></button>
    </div>`;
 
   mealCard.innerHTML = htmlMealData;
@@ -369,7 +367,6 @@ let message;
 landingPage.addEventListener("click", function (event) {
   let randomIndex = Math.floor(Math.random() * 2);
   let selectedQuote = event.target.id;
-  console.log(selectedQuote);
   if (selectedQuote === "selectAngry") {
     message = quotes.angry[randomIndex];
   } else if (selectedQuote === "selectHappy") {
@@ -387,12 +384,8 @@ function setCardHeight() {
   const drinkCard = document.getElementById("drink-card");
   const mealCard = document.getElementById("meal-card");
 
-  console.log(`mealCard height: ${mealCard.offsetHeight}`);
-
   window.requestAnimationFrame(() => {
     const cardHeight = mealCard.offsetHeight;
-
-    console.log(`Setting drinkCard height to: ${cardHeight}`);
 
     drinkCard.style.height = cardHeight;
   });
@@ -400,18 +393,16 @@ function setCardHeight() {
 
 //This function checks whether the parentNode button is in either the drink or meal card and renders the function again to get a different meal/drink
 function shuffleItems(event) {
-  if (event.target.classList[0] === "drinkShuffle") {
-    console.log("hi");
+  if (event.target.id === "drinkShuffleBtn" || event.target.classList[0] === 'drinkShuffle') {
     chosenSelectedDrink(userDrinkChoice);
-  } else if (event.target.classList[0] === "mealShuffle") {
-    console.log("popo");
+  } else if (event.target.id === "mealShuffleBtn" || event.target.classList[0] === "mealShuffle") {
     fetchMealData(userFoodChoice);
   }
 }
 
 //event listeners for when the user clicks on shuffle buttons inside either the drink or meal card.
 mealCard.addEventListener("click", (event) => shuffleItems(event));
-drinkShuffle.addEventListener("click", (event) => shuffleItems(event));
+drinkShuffleBtn.addEventListener("click", (event) => shuffleItems(event));
 
 //event listener to add the current drink to local storage.
 drinkFavourite.addEventListener("click", function () {
@@ -429,6 +420,7 @@ drinkFavourite.addEventListener("click", function () {
   console.log(cardDrinkStorage);
 });
 //event listener to add the current meal to local storage.
+
 mealCard.addEventListener("click", function (event) {
   console.log("hello");
   if (event.target.id === "mealFavourite") {
