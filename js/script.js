@@ -12,6 +12,8 @@ let options = document.querySelector("#drink-options");
 let resultsContainer = document.getElementById("results-container");
 let container = document.querySelector(".container");
 let drinkShuffle = document.querySelector(".drinkShuffle");
+let drinkShuffleBtn = document.getElementById('drinkShuffleBtn');
+let mealShuffleBtn = document.getElementById('mealShuffleBtn');
 
 // Drinks
 let userDrinkChoice;
@@ -31,6 +33,7 @@ let drinkCardUL = document.getElementById("drinkCardUL");
 let drinkFavourite = document.getElementById("drinkFavourite");
 let cardDrinkStorage;
 let cardMealStorage;
+
 // Meals
 let userFoodChoice;
 let foodBtns = document.querySelectorAll(".foods");
@@ -53,6 +56,7 @@ let questions = [
   },
 ];
 
+// Function for rendering home screen buttons.
 emojiBtns.forEach(function (emojiBtn) {
   // addEventListener to emojiBtn
   emojiBtn.addEventListener("click", function (event) {
@@ -78,6 +82,7 @@ emojiBtns.forEach(function (emojiBtn) {
   });
 });
 
+// Function for rendering drink buttons.
 drinkBtns.forEach(function (drinkBtn) {
   drinkBtn.addEventListener("click", function (event) {
     let selectedDrink = event.target;
@@ -99,7 +104,6 @@ drinkBtns.forEach(function (drinkBtn) {
     document.querySelector(".food-btns").classList.remove("hide");
     // add drinks options class
     document.querySelector(".food-btns").classList.add("options");
-    console.log(selectedDrink);
 
     userDrinkChoice = selectedDrink;
 
@@ -107,11 +111,8 @@ drinkBtns.forEach(function (drinkBtn) {
   });
 });
 
-//www.thecocktaildb.com/api/json/v1/1/list.php?c=list - this list all the drink categories
-
-// 'Cocktail', 'Soft Drink', 'cofee/tea', 'Other / Unknown', 'Shake', 'Punch / Party Drink', 'Beer', 'Cocoa'.
+//API CocktailsDB - function to fetch drink from API and to render the results to the page.
 function chosenSelectedDrink(userDrinkChoice) {
-  console.log(userDrinkChoice);
 
   if (userDrinkChoice === "Surprise Me") {
     for (let i = 0; i < 1; i++) {
@@ -120,7 +121,6 @@ function chosenSelectedDrink(userDrinkChoice) {
       userDrinkChoice = randomValue.textContent.trim();
     }
   }
-  console.log(userDrinkChoice);
   let queryURL = `https://thecocktaildb.com/api/json/v1/1/filter.php?c=${userDrinkChoice}`;
   fetch(queryURL)
     .then((response) => response.json())
@@ -198,12 +198,9 @@ function fetchMealData(category) {
     fetch(queryURL)
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         let meals = response.meals;
         let randomIndex = Math.floor(Math.random() * meals.length);
         let randomMeal = meals[randomIndex];
-        console.log(randomMeal);
-
         let mealId = randomMeal.idMeal;
         return fetch(
           `https://themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
@@ -220,16 +217,12 @@ function fetchMealData(category) {
     const categories = ["Vegan", "Vegetarian", "Seafood"];
     const randomCategory =
       categories[Math.floor(Math.random() * categories.length)];
-    console.log(randomCategory);
     fetch(`https://themealdb.com/api/json/v1/1/filter.php?c=${randomCategory}`)
       .then((response) => response.json())
       // This is the returned selected meal data (array of objects), function to randomly select one meal
       .then((response) => {
         let index = Math.floor(Math.random() * response.meals.length);
-        console.log(index);
         let randomMeal = response.meals[index];
-        console.log(randomMeal);
-
         let mealId = randomMeal.idMeal;
         return fetch(
           `https://themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
@@ -279,13 +272,12 @@ function renderMeal(mealDetails) {
     let quantity = mealDetails[0][`strMeasure${i}`];
 
     if (ingredient && quantity) {
-      console.log("ingredient:", ingredient, "quantity:", quantity); //this renders each ingredient if it exists.
       stringIngr.push(ingredient); //this cycles through each truthy ingredient and pushes it into the new array.
       stringMeasure.push(quantity);
     }
   }
 
-  // Render on the page
+  // Render meals on the page
 
   let mealCard = document.querySelector("#meal-card");
   var cardName = mealDetails[0].strMeal;
@@ -306,7 +298,7 @@ function renderMeal(mealDetails) {
    <p style='font-size: 15px;'class="card-text">Instructions: ${cardInstructions}</p>
    <div class='card-bottom'><button class="card-btn-style">
    <img  id = "mealFavourite"  src="./assets/favourites/add-to-favs.png" width="100px" height="100px" alt="pink-plus-icon"></button>
-   <button class="card-btn-style"><img  src="./assets/favourites/shuffle.png" class="mealShuffle"></img></button>
+   <button id="mealShuffleBtn" class="card-btn-style"><img  src="./assets/favourites/shuffle.png" class="mealShuffle"></img></button>
    </div>`;
 
   mealCard.innerHTML = htmlMealData;
@@ -369,7 +361,6 @@ let message;
 landingPage.addEventListener("click", function (event) {
   let randomIndex = Math.floor(Math.random() * 2);
   let selectedQuote = event.target.id;
-  console.log(selectedQuote);
   if (selectedQuote === "selectAngry") {
     message = quotes.angry[randomIndex];
   } else if (selectedQuote === "selectHappy") {
@@ -387,12 +378,8 @@ function setCardHeight() {
   const drinkCard = document.getElementById("drink-card");
   const mealCard = document.getElementById("meal-card");
 
-  console.log(`mealCard height: ${mealCard.offsetHeight}`);
-
   window.requestAnimationFrame(() => {
     const cardHeight = mealCard.offsetHeight;
-
-    console.log(`Setting drinkCard height to: ${cardHeight}`);
 
     drinkCard.style.height = cardHeight;
   });
@@ -400,24 +387,20 @@ function setCardHeight() {
 
 //This function checks whether the parentNode button is in either the drink or meal card and renders the function again to get a different meal/drink
 function shuffleItems(event) {
-  if (event.target.classList[0] === "drinkShuffle") {
-    console.log("hi");
+  if (event.target.id === "drinkShuffleBtn" || event.target.classList[0] === 'drinkShuffle') {
     chosenSelectedDrink(userDrinkChoice);
-  } else if (event.target.classList[0] === "mealShuffle") {
-    console.log("popo");
+  } else if (event.target.id === "mealShuffleBtn" || event.target.classList[0] === "mealShuffle") {
     fetchMealData(userFoodChoice);
   }
 }
 
-//event listeners for when the user clicks on shuffle buttons inside either the drink or meal card.
+//Event listeners for when the user clicks on shuffle buttons inside either the drink or meal card.
 mealCard.addEventListener("click", (event) => shuffleItems(event));
-drinkShuffle.addEventListener("click", (event) => shuffleItems(event));
+drinkShuffleBtn.addEventListener("click", (event) => shuffleItems(event));
 
-//event listener to add the current drink to local storage.
+//Event listener to add the current drink to local storage.
 drinkFavourite.addEventListener("click", function () {
-  console.log(cardDrinkStorage);
   let drinks = localStorage.getItem("Drinks");
-
   if (drinks) {
     //This checks if users is true and not equal to null or undefined.
     drinks = JSON.parse(drinks); //JSON.parse converts the string value into a Javascript object and is necessary because when items are added to localStorage they're stored as a string//
@@ -426,15 +409,12 @@ drinkFavourite.addEventListener("click", function () {
     drinks = [cardDrinkStorage]; //If there are no existing items callled user, then we create a new array as the user item.
   }
   localStorage.setItem("Drinks", JSON.stringify(drinks));
-  console.log(cardDrinkStorage);
 });
-//event listener to add the current meal to local storage.
-mealCard.addEventListener("click", function (event) {
-  console.log("hello");
-  if (event.target.id === "mealFavourite") {
-    console.log(cardMealStorage);
-    let meals = localStorage.getItem("Meals");
 
+//Event listener to add the current meal to local storage.
+mealCard.addEventListener("click", function (event) {
+  if (event.target.id === "mealFavourite") {
+    let meals = localStorage.getItem("Meals");
     if (meals) {
       meals = JSON.parse(meals);
       meals.push(cardMealStorage);
@@ -442,6 +422,5 @@ mealCard.addEventListener("click", function (event) {
       meals = [cardMealStorage];
     }
     localStorage.setItem("Meals", JSON.stringify(meals));
-    console.log(meals);
   }
 });
