@@ -188,7 +188,6 @@ img {
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
-  height: 100%;
 }
 
 #mealFavourite:hover,
@@ -207,6 +206,7 @@ img {
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
+  height: 100%;
 }
 
 ul {
