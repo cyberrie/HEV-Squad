@@ -85,9 +85,11 @@ Things for the future include:
 
 - Adding sound effects for improved interactivity
 
+- Favorited items to save to a server rather than local storage so they can keep these forever.
+
 - Using [Geoapify](https://www.geoapify.com/) to provide the user with a map showing their nearest restaurants based on their selected meal and drinks
 
-- Additional drink options such as soft drinks, water and fruit juices.
+- Additional drink options such as soft drinks, water and fruit juice
 
 - The option to choose either just a cocktail or drink
 
