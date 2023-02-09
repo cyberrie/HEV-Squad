@@ -11,7 +11,6 @@
 - [Directions for future development](#directions-for-future-development)
 - [Useful resources](#useful-resources)
 - [Authors](#authors)
-- [License](#license)
 - [Acknowledgements](#acknowledgements)
 
 ## Overview
@@ -50,13 +49,11 @@ One sip and bite at a time... 🍸 🤤
 
 The following animation demonstrates the application functionality:
 
-![MoodMix]()
+![MoodMix](./assets/moodmix-demo.gif)
 
 ## Links
 
-- You will be able to access the app URL if you navigate into Settings → Pages inside this repository
-
-- Or, click on this link: [Mood Mix]()
+- Thirsty or feeling peckish?, click on this link: [Mood Mix](https://cyberrie.github.io/MoodMix/)
 
 ## Built with...
 
@@ -76,23 +73,27 @@ The following animation demonstrates the application functionality:
 
 ## What we learned
 
-.......let's think about everything that we learned, let's exchange over the next couple of days
+This project presented several challenges, including agreeing on the content, style, and functionality of the application, as well as managing different pace of group work. However, through effective collaboration and communication, we were able to overcome these challenges and successfully complete the project.
+
+We learned the importance of clear and consistent communication, as well as the value of a well-defined development process. We also discovered that utilizing version control tools like GitHub and Git allowed us to work together efficiently and effectively, even from different locations. Additionally, we gained hands-on experience working with modern frontend technologies and tools, honing our skills and strengthening our understanding of web development.
+
+Overall, the group frontend development project was a valuable learning experience that taught us about the challenges and rewards of working on a large-scale project as a team. We are proud of what we have accomplished and look forward to applying the lessons we learned to future projects.
 
 ## Directions for future development
 
 Things for the future include:
 
-- Adding sound effects for improved interactivity.
+- Adding sound effects for improved interactivity
 
-- Using [Geoapify](https://www.geoapify.com/) to provide the user with a map showing their nearest restaurants based on their selected meal and drinks.
+- Using [Geoapify](https://www.geoapify.com/) to provide the user with a map showing their nearest restaurants based on their selected meal and drinks
 
 - Additional drink options such as soft drinks, water and fruit juices.
 
-- The option to choose either just a cocktail or drink.
+- The option to choose either just a cocktail or drink
 
 ## Useful Resources
 
-- [JavaScript] (https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 - [jQuery Documentation](https://api.jquery.com/)
 
@@ -116,10 +117,10 @@ Things for the future include:
 
 First and foremost, we would like to thank our taste buds. Without their constant craving for delicious cocktails and mouth-watering meals, MoodMix wouldn't exist.
 
-We would also like to thank the internet, for providing endless inspiration in the form of quotes from famous people. And a special shoutout to the frontend web development community, for making the impossible possible with their wizardry skills.
+We would also like to thank the internet, for providing endless inspiration in the form of quotes from famous people.
 
 Next, we would like to acknowledge the power of teamwork. Without our fantastic team of developers, MoodMix would be nothing but a pipe dream.
 
-Thank you Andrew, Dane 💛 ............we can add people here as we go, who make a difference, we can also change this up
+Special thanks to our tutors Andrew and Dane for helping us out with some challenges during this group project 💛
 
-Last but not least, we want to thank our users. You are the reason we do what we do. So sit back, grab a drink, and let MoodMix elevate your mood ........ this is something I thought of including, it's obvs the best app out there hah
+Last but not least, we want to thank our users. You are the reason we do what we do. So sit back, grab a drink, and let MoodMix elevate your mood.
