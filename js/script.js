@@ -12,8 +12,8 @@ let options = document.querySelector("#drink-options");
 let resultsContainer = document.getElementById("results-container");
 let container = document.querySelector(".container");
 let drinkShuffle = document.querySelector(".drinkShuffle");
-let drinkShuffleBtn = document.getElementById('drinkShuffleBtn');
-let mealShuffleBtn = document.getElementById('mealShuffleBtn');
+let drinkShuffleBtn = document.getElementById("drinkShuffleBtn");
+let mealShuffleBtn = document.getElementById("mealShuffleBtn");
 
 // Drinks
 let userDrinkChoice;
@@ -86,13 +86,18 @@ emojiBtns.forEach(function (emojiBtn) {
 drinkBtns.forEach(function (drinkBtn) {
   drinkBtn.addEventListener("click", function (event) {
     let selectedDrink = event.target;
+    console.log(selectedDrink);
     // conditions, either button selected
-    if (selectedDrink.tagName === "IMG") {
-      selectedDrink = selectedDrink.parentNode.textContent.trim();
+    if (selectedDrink.tagName === "IMG" && selectedDrink.parentNode.textContent.trim() === "Fizzy") {
+      console.log('hello')
+      selectedDrink = 'Soft Drink'
+    } else if (selectedDrink.tagName === 'IMG') {
+      selectedDrink = selectedDrink.parentNode.textContent.trim() 
     } else {
-      selectedDrink = event.target.textContent.trim();
+      selectedDrink = event.target.textContent.trim()
     }
-    // appends 2nd question
+
+      // appends 2nd question
     questionTitle.innerHTML = questions[1].title;
 
     // add hide class for drinks
@@ -113,7 +118,6 @@ drinkBtns.forEach(function (drinkBtn) {
 
 //API CocktailsDB - function to fetch drink from API and to render the results to the page.
 function chosenSelectedDrink(userDrinkChoice) {
-
   if (userDrinkChoice === "Surprise Me") {
     for (let i = 0; i < 1; i++) {
       let randomIndex = Math.floor(Math.random() * (drinkBtns.length - 1));
@@ -175,7 +179,7 @@ function chosenSelectedDrink(userDrinkChoice) {
 
 // API mealsDB
 
-// user input - API meal categories: vegan, vegeterian, meat[beef, chicken, lamb, pork, goat], seafood, surprise me: mix them all up? only mixed vegan, vegeterian and seafood as meats are a pain
+// user input - API meal categories: vegan, vegetarian, meat[beef, chicken, lamb, pork, goat], seafood, surprise me: mix them all up? only mixed vegan, vegeterian and seafood as meats are a pain
 
 // Function to fetch meal data based on user input
 function fetchMealData(category) {
@@ -387,9 +391,15 @@ function setCardHeight() {
 
 //This function checks whether the parentNode button is in either the drink or meal card and renders the function again to get a different meal/drink
 function shuffleItems(event) {
-  if (event.target.id === "drinkShuffleBtn" || event.target.classList[0] === 'drinkShuffle') {
+  if (
+    event.target.id === "drinkShuffleBtn" ||
+    event.target.classList[0] === "drinkShuffle"
+  ) {
     chosenSelectedDrink(userDrinkChoice);
-  } else if (event.target.id === "mealShuffleBtn" || event.target.classList[0] === "mealShuffle") {
+  } else if (
+    event.target.id === "mealShuffleBtn" ||
+    event.target.classList[0] === "mealShuffle"
+  ) {
     fetchMealData(userFoodChoice);
   }
 }
